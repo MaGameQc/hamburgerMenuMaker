@@ -94,8 +94,27 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
     };
 
     this.generateEmbededAnimation = function(){
+        let text = 
+        "<style>" + "\n" + 
+        "@keyframes theBulletAnimate1{" + "\n" +
+            "from{transform-origin: center; transform : rotate(0deg);}" + "\n" +
+             "to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
+             "}" + "\n" + "\n" +
         
-    }
+        "@keyframes theBulletAnimate2{" + "\n" +
+         "from{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
+          "to{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
+         "}" + "\n" +
+        "</style>";
+
+        let parent = document.getElementById("toCopy");
+        let br = document.createElement("br");
+        let br2 = document.createElement("br");
+        parent.appendChild(br);
+        parent.appendChild(br2);
+        let content = text;
+        console.log(content);
+        }
 
 }
 
