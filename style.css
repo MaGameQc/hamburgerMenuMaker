@@ -35,7 +35,7 @@
 
 
 
-/* @keyframes theBulletAnimate1{
+@keyframes theBulletAnimate1{
     from{transform-origin: center; transform : rotate(0deg);}
     to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }
 }
@@ -43,7 +43,7 @@
 @keyframes theBulletAnimate2{
     from{transform-origin: center; transform : translateX(0); opacity: 1;}
     to{transform-origin: center; transform : translateX(-100%); opacity: 0; }
-} */
+}
 
 @keyframes theBulletAnimate3{
     from{transform-origin: center; transform : rotate(0deg)}
@@ -88,8 +88,7 @@
 
 .theBulletLine:nth-child(3){
     animation: theBulletInitial3 .5s forwards;
-
-}
+} 
 
 
 /***********************************************************************************  slide Up ************************************************************************/

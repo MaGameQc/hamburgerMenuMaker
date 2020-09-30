@@ -93,19 +93,79 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
         parent.appendChild(child);
     };
 
+    let animLine = this.lineName + "Animate";
+    let defaultLine = this.lineName + "Default";
+
     this.generateEmbededAnimation = function(){
         let text = 
         "<style>" + "\n" + 
-        "@keyframes theBulletAnimate1{" + "\n" +
-            "from{transform-origin: center; transform : rotate(0deg);}" + "\n" +
-             "to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
-             "}" + "\n" + "\n" +
+
+        "@keyframes " + animLine + "1" + "{" + "\n" +
+        "from{transform-origin: center; transform : rotate(0deg);}" + "\n" +
+        "to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
+        "}" + "\n" + "\n" +
         
-        "@keyframes theBulletAnimate2{" + "\n" +
-         "from{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
-          "to{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
-         "}" + "\n" +
-        "</style>";
+        "@keyframes " + animLine + "2" + "{" + "\n" +
+        "from{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
+        "to{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
+         "}" + "\n" + "\n" +
+
+        "@keyframes " + animLine + "3" + "{" + "\n" +
+        "from{transform-origin: center; transform : rotate(0deg)}" + "\n" +
+        "to{transform-origin: center; transform : translateY(-200%) rotateZ(45deg); }" + "\n" +
+        "}" + "\n" + "\n" +
+
+
+
+
+        "@keyframes " + defaultLine + "1" + "{" + "\n" +
+        "from{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
+        "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
+        "}" + "\n" + "\n" +
+        
+        "@keyframes " + defaultLine + "2" + "{" + "\n" +
+        "from{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
+        "to{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
+        "}" + "\n" +  "\n" +
+        
+        "@keyframes " + defaultLine + "3" + "{" + "\n" +
+        "from{transform-origin: center; transform:  translateY(-200%) rotateZ(45deg); }" + "\n" +
+        "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
+        "}" + "\n" + "\n" +
+
+
+
+
+        
+        "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(1){" + "\n" +
+        "animation : " + animLine + "1" + " .5s forwards;" + "\n" +
+        "}" + "\n" + "\n" +
+         
+        "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(2){" + "\n" +
+        "animation : " + animLine + "2" + " .5s forwards;" + "\n" +
+        "}" + "\n" + "\n" +
+        
+        "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(3){" + "\n" +
+        "animation : " + animLine + "3" + " .5s forwards;" + "\n" +
+        "}" + "\n" + "\n" +
+
+
+
+
+        "." + this.lineName + ":nth-child(1){" + "\n" +
+        "animation: " + defaultLine + "1" + " .5s forwards;" + "\n" +
+        "}" + "\n" + "\n" +
+        
+        "." + this.lineName + ":nth-child(2){" + "\n" +
+        "animation: " + defaultLine + "2" + " .5s forwar ds;" + "\n" +
+        "}" + "\n" + "\n" +
+        
+        "." + this.lineName + ":nth-child(3){" + "\n" +
+        "animation: " + defaultLine + "3" + " .5s forwards;" + "\n" +
+        "}" + "\n" + "\n" +
+
+        "</style>" + "\n"
+        ;
 
         let parent = document.getElementById("toCopy");
         let br = document.createElement("br");
@@ -114,6 +174,7 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
         parent.appendChild(br2);
         let content = text;
         console.log(content);
+        parent.textContent = text;
         }
 
 }
