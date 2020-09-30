@@ -21,6 +21,8 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
     this.label;
     this.line;
 
+    this.generatedKeyframes = "";
+
     this.buildElements = function(){
         this.container = document.createElement("div");
         this.container.setAttribute("id", this.containerName);
@@ -89,95 +91,134 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
     this.generateEmbededHtml = function(){
         let parent = document.getElementById("toCopy");
         let content = this.container;
-        let child = document.createTextNode(content.outerHTML);
+        let child = document.createTextNode(content.outerHTML + "\n" + "\n");
         parent.appendChild(child);
     };
 
-    let animLine = this.lineName + "Animate";
-    let defaultLine = this.lineName + "Default";
+
 
     this.generateEmbededAnimation = function(){
-        let text = 
-        "<style>" + "\n" + 
+        // let animLine = this.lineName + "Animate";
+        // let defaultLine = this.lineName + "Default";
 
-        "@keyframes " + animLine + "1" + "{" + "\n" +
-        "from{transform-origin: center; transform : rotate(0deg);}" + "\n" +
-        "to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
-        "}" + "\n" + "\n" +
+        // let text = 
+        // "<style>" + "\n" + 
+
+        // "@keyframes " + animLine + "1" + "{" + "\n" +
+        // "from{transform-origin: center; transform : rotate(0deg);}" + "\n" +
+        // "to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
+        // "}" + "\n" + "\n" +
         
-        "@keyframes " + animLine + "2" + "{" + "\n" +
-        "from{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
-        "to{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
-         "}" + "\n" + "\n" +
+        // "@keyframes " + animLine + "2" + "{" + "\n" +
+        // "from{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
+        // "to{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
+        //  "}" + "\n" + "\n" +
 
-        "@keyframes " + animLine + "3" + "{" + "\n" +
-        "from{transform-origin: center; transform : rotate(0deg)}" + "\n" +
-        "to{transform-origin: center; transform : translateY(-200%) rotateZ(45deg); }" + "\n" +
-        "}" + "\n" + "\n" +
-
-
+        // "@keyframes " + animLine + "3" + "{" + "\n" +
+        // "from{transform-origin: center; transform : rotate(0deg)}" + "\n" +
+        // "to{transform-origin: center; transform : translateY(-200%) rotateZ(45deg); }" + "\n" +
+        // "}" + "\n" + "\n" +
 
 
-        "@keyframes " + defaultLine + "1" + "{" + "\n" +
-        "from{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
-        "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
-        "}" + "\n" + "\n" +
+
+
+
+
+
+
+        // "@keyframes " + defaultLine + "1" + "{" + "\n" +
+        // "from{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
+        // "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
+        // "}" + "\n" + "\n" +
         
-        "@keyframes " + defaultLine + "2" + "{" + "\n" +
-        "from{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
-        "to{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
-        "}" + "\n" +  "\n" +
+        // "@keyframes " + defaultLine + "2" + "{" + "\n" +
+        // "from{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
+        // "to{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
+        // "}" + "\n" +  "\n" +
         
-        "@keyframes " + defaultLine + "3" + "{" + "\n" +
-        "from{transform-origin: center; transform:  translateY(-200%) rotateZ(45deg); }" + "\n" +
-        "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
-        "}" + "\n" + "\n" +
+        // "@keyframes " + defaultLine + "3" + "{" + "\n" +
+        // "from{transform-origin: center; transform:  translateY(-200%) rotateZ(45deg); }" + "\n" +
+        // "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
+        // "}" + "\n" + "\n" +
 
 
 
 
         
-        "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(1){" + "\n" +
-        "animation : " + animLine + "1" + " .5s forwards;" + "\n" +
-        "}" + "\n" + "\n" +
+        // "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(1){" + "\n" +
+        // "animation : " + animLine + "1" + " .5s forwards;" + "\n" +
+        // "}" + "\n" + "\n" +
          
-        "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(2){" + "\n" +
-        "animation : " + animLine + "2" + " .5s forwards;" + "\n" +
-        "}" + "\n" + "\n" +
+        // "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(2){" + "\n" +
+        // "animation : " + animLine + "2" + " .5s forwards;" + "\n" +
+        // "}" + "\n" + "\n" +
         
-        "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(3){" + "\n" +
-        "animation : " + animLine + "3" + " .5s forwards;" + "\n" +
-        "}" + "\n" + "\n" +
+        // "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(3){" + "\n" +
+        // "animation : " + animLine + "3" + " .5s forwards;" + "\n" +
+        // "}" + "\n" + "\n" +
 
 
 
 
-        "." + this.lineName + ":nth-child(1){" + "\n" +
-        "animation: " + defaultLine + "1" + " .5s forwards;" + "\n" +
-        "}" + "\n" + "\n" +
+        // "." + this.lineName + ":nth-child(1){" + "\n" +
+        // "animation: " + defaultLine + "1" + " .5s forwards;" + "\n" +
+        // "}" + "\n" + "\n" +
         
-        "." + this.lineName + ":nth-child(2){" + "\n" +
-        "animation: " + defaultLine + "2" + " .5s forwar ds;" + "\n" +
-        "}" + "\n" + "\n" +
+        // "." + this.lineName + ":nth-child(2){" + "\n" +
+        // "animation: " + defaultLine + "2" + " .5s forwar ds;" + "\n" +
+        // "}" + "\n" + "\n" +
         
-        "." + this.lineName + ":nth-child(3){" + "\n" +
-        "animation: " + defaultLine + "3" + " .5s forwards;" + "\n" +
-        "}" + "\n" + "\n" +
+        // "." + this.lineName + ":nth-child(3){" + "\n" +
+        // "animation: " + defaultLine + "3" + " .5s forwards;" + "\n" +
+        // "}" + "\n" + "\n" +
 
-        "</style>" + "\n"
-        ;
+        // "</style>" + "\n"
+        // ;
 
-        let parent = document.getElementById("toCopy");
-        let br = document.createElement("br");
-        let br2 = document.createElement("br");
-        parent.appendChild(br);
-        parent.appendChild(br2);
-        let content = text;
-        console.log(content);
-        parent.textContent = text;
+        // let parent = document.getElementById("toCopy");
+        // let br = document.createElement("br");
+        // let br2 = document.createElement("br");
+        // parent.appendChild(br);
+        // parent.appendChild(br2);
+        // let content = text;
+        // console.log(content);
+        // parent.textContent = text;
+        };
+
+        this.generateKeyframes = function(indx, from1, from2, from3, to1, to2, to3){
+            let animLine = this.hamburgerName + "Animate";
+            let defaultLine = this.hamburgerName + "Default";
+            let text = 
+            "@keyframes " + animLine + indx + "{" + "\n" +
+            "from{ " + from1 + from2 + from3 + " }" + "\n" +
+            "to{ " + to1 + to2 + to3 + " }" + "\n" +
+            "}" + "\n" + "\n" 
+            ;
+
+            let parent = document.getElementById("toCopy");
+            let br = document.createElement("br");
+            let br2 = document.createElement("br");
+            parent.appendChild(br);
+            parent.appendChild(br2);
+            let content = text;
+            parent.textContent += content;
+            this.generatedKeyframes += content;
+        };
+
+        this.createAnimation = function(){
+            let generate = this.generatedKeyframes;
+            console.log(generate);
+
+            let style = document.createElement("style");
+            // style.innerHTML(generate);
+            let textNode = document.createTextNode(generate);
+            style.appendChild(textNode);
+            document.head.appendChild(style);
         }
 
 }
+
+
 
 
 
@@ -190,4 +231,12 @@ theBullet.setCheckBoxStyle(theBullet.checkBox);
 theBullet.setLineStyle(theBullet.line);
 theBullet.generateEmbededHtml();
 theBullet.generateEmbededAnimation();
+
+theBullet.generateKeyframes("1", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform:  translateY(200%) rotateZ(-45deg);", "");
+theBullet.generateKeyframes("2", "transform-origin: center;", "transform : translateX(0);", "opacity: 1;", "transform-origin: center;", "transform : translateX(-100%);", "opacity: 0;");
+theBullet.generateKeyframes("3", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform : translateY(-200%) rotateZ(45deg);", "");
+
+
+
+theBullet.createAnimation();
 
