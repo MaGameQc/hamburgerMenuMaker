@@ -97,102 +97,15 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
 
 
 
-    this.generateEmbededAnimation = function(){
-        // let animLine = this.lineName + "Animate";
-        // let defaultLine = this.lineName + "Default";
-
-        // let text = 
-        // "<style>" + "\n" + 
-
-        // "@keyframes " + animLine + "1" + "{" + "\n" +
-        // "from{transform-origin: center; transform : rotate(0deg);}" + "\n" +
-        // "to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
-        // "}" + "\n" + "\n" +
-        
-        // "@keyframes " + animLine + "2" + "{" + "\n" +
-        // "from{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
-        // "to{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
-        //  "}" + "\n" + "\n" +
-
-        // "@keyframes " + animLine + "3" + "{" + "\n" +
-        // "from{transform-origin: center; transform : rotate(0deg)}" + "\n" +
-        // "to{transform-origin: center; transform : translateY(-200%) rotateZ(45deg); }" + "\n" +
-        // "}" + "\n" + "\n" +
-
-
-
-
-
-
-
-
-        // "@keyframes " + defaultLine + "1" + "{" + "\n" +
-        // "from{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }" + "\n" +
-        // "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
-        // "}" + "\n" + "\n" +
-        
-        // "@keyframes " + defaultLine + "2" + "{" + "\n" +
-        // "from{transform-origin: center; transform : translateX(-100%); opacity: 0; }" + "\n" +
-        // "to{transform-origin: center; transform : translateX(0); opacity: 1;}" + "\n" +
-        // "}" + "\n" +  "\n" +
-        
-        // "@keyframes " + defaultLine + "3" + "{" + "\n" +
-        // "from{transform-origin: center; transform:  translateY(-200%) rotateZ(45deg); }" + "\n" +
-        // "to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }" + "\n" +
-        // "}" + "\n" + "\n" +
-
-
-
-
-        
-        // "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(1){" + "\n" +
-        // "animation : " + animLine + "1" + " .5s forwards;" + "\n" +
-        // "}" + "\n" + "\n" +
-         
-        // "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(2){" + "\n" +
-        // "animation : " + animLine + "2" + " .5s forwards;" + "\n" +
-        // "}" + "\n" + "\n" +
-        
-        // "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(3){" + "\n" +
-        // "animation : " + animLine + "3" + " .5s forwards;" + "\n" +
-        // "}" + "\n" + "\n" +
-
-
-
-
-        // "." + this.lineName + ":nth-child(1){" + "\n" +
-        // "animation: " + defaultLine + "1" + " .5s forwards;" + "\n" +
-        // "}" + "\n" + "\n" +
-        
-        // "." + this.lineName + ":nth-child(2){" + "\n" +
-        // "animation: " + defaultLine + "2" + " .5s forwar ds;" + "\n" +
-        // "}" + "\n" + "\n" +
-        
-        // "." + this.lineName + ":nth-child(3){" + "\n" +
-        // "animation: " + defaultLine + "3" + " .5s forwards;" + "\n" +
-        // "}" + "\n" + "\n" +
-
-        // "</style>" + "\n"
-        // ;
-
-        // let parent = document.getElementById("toCopy");
-        // let br = document.createElement("br");
-        // let br2 = document.createElement("br");
-        // parent.appendChild(br);
-        // parent.appendChild(br2);
-        // let content = text;
-        // console.log(content);
-        // parent.textContent = text;
-        };
-
         this.generateKeyframes = function(indx, state, from1, from2, from3, to1, to2, to3){
             let animLine = this.hamburgerName + state;
             let defaultLine = this.hamburgerName + "Default";
             let text = 
+            "\n" +
             "@keyframes " + animLine + indx + "{" + "\n" +
             "from{ " + from1 + from2 + from3 + " }" + "\n" +
             "to{ " + to1 + to2 + to3 + " }" + "\n" +
-            "}" + "\n" + "\n" 
+            "}" + "\n"  
             ;
             this.cumulateCss(text);
 
@@ -203,49 +116,53 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
                 let animName = this.hamburgerName + state;
 
                 let text = 
-                "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " .theBulletLine:nth-child(" + indx + "){" + "\n" +
+                "\n" +
+                "#" + this.checkBoxName + ":checked ~ #" + this.labelName + " ." + this.lineName + ":nth-child(" + indx + "){" + "\n" +
                     "animation : " + animName + indx + " .5s forwards;" + "\n" +
-                "}" + "\n" + "\n"
+                "}" + "\n"
                 ;
 
                 this.cumulateCss(text);
             } else{
                 let animName = this.hamburgerName + state;
                 let text = 
-                ".theBulletLine:nth-child(" + indx + "){" + "\n" +
+                "\n" +
+                "." + this.lineName + ":nth-child(" + indx + "){" + "\n" +
                     "animation: " + animName + indx + " .5s forwards;" + "\n" +
-                "}" + "\n" + "\n" 
+                "}" + "\n" 
                 ;
                 this.cumulateCss(text);
             }
 
         };
 
-
-        this.createAnimation = function(){
-            let generate = this.generatedKeyframes;
-            console.log(generate);
-
-            let style = document.createElement("style");
-            style.setAttribute("id", "generatedStyle");
-            // style.innerHTML(generate);
-            let textNode = document.createTextNode(generate);
-            style.appendChild(textNode);
-            document.head.appendChild(style);
-        };
-
         this.cumulateCss = function(text){
             let content = text;
             this.generatedKeyframes += content;
+        };
 
 
+        this.createStyleTagAndFill = function(){
+            let generate = this.generatedKeyframes;
+            let styleTag = document.createElement("style");
+            let textNode = document.createTextNode(generate);
+            styleTag.appendChild(textNode);
+            document.head.appendChild(styleTag);
+            this.converCssTagToCopy(styleTag);
+        };
+
+        this.converCssTagToCopy = function(styleTag){
+            console.log(styleTag);
+            let content = styleTag.outerHTML;
             let parent = document.getElementById("toCopy");
             let br = document.createElement("br");
             let br2 = document.createElement("br");
             parent.appendChild(br);
             parent.appendChild(br2);
             parent.textContent += content;
-        };
+        }
+
+
 
 }
 
@@ -261,7 +178,6 @@ theBullet.setLabelStyle(theBullet.label);
 theBullet.setCheckBoxStyle(theBullet.checkBox);
 theBullet.setLineStyle(theBullet.line);
 theBullet.generateEmbededHtml();
-theBullet.generateEmbededAnimation();
 
 theBullet.generateKeyframes("1","Animate", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform:  translateY(200%) rotateZ(-45deg);", "");
 theBullet.generateKeyframes("2","Animate", "transform-origin: center;", "transform : translateX(0);", "opacity: 1;", "transform-origin: center;", "transform : translateX(-100%);", "opacity: 0;");
@@ -279,8 +195,37 @@ theBullet.checkBoxChecked("1", "Initial");
 theBullet.checkBoxChecked("2", "Initial");
 theBullet.checkBoxChecked("3", "Initial");
 
-theBullet.createAnimation();
+theBullet.createStyleTagAndFill();
 
 
 
 
+/**************************************************************************************************************************slide Up */
+
+let robotic = new hamburgerMaker("robotic", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
+robotic.buildElements();
+robotic.setContainerStyle(robotic.container);
+robotic.setLabelStyle(robotic.label);
+robotic.setCheckBoxStyle(robotic.checkBox);
+robotic.setLineStyle(robotic.line);
+robotic.generateEmbededHtml();
+
+console.log(document.getElementById("slideUpHamburgerContainer"));
+
+robotic.generateKeyframes("1","Animate", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform:  translateY(200%) rotateZ(-45deg);", "");
+robotic.generateKeyframes("2","Animate", "transform-origin: center;", "transform : translateX(0);", "opacity: 1;", "transform-origin: center;", "transform : translateX(-100%);", "opacity: 0;");
+robotic.generateKeyframes("3","Animate", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform : translateY(-200%) rotateZ(45deg);", "");
+
+robotic.generateKeyframes("1","Initial", "transform-origin: center;",  "transform:  translateY(200%) rotateZ(-45deg);", "",  "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
+robotic.generateKeyframes("2","Initial", "transform-origin: center;", "transform : translateX(-100%); opacity: 0;", "", "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
+robotic.generateKeyframes("3","Initial", "transform-origin: center;",  "transform:  translateY(-200%) rotateZ(45deg);", "", "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
+
+// slideUp.checkBoxChecked("1", "Animate");
+// slideUp.checkBoxChecked("2", "Animate");
+// slideUp.checkBoxChecked("3", "Animate");
+
+// slideUp.checkBoxChecked("1", "Initial");
+// slideUp.checkBoxChecked("2", "Initial");
+// slideUp.checkBoxChecked("3", "Initial");
+
+// robotic.createStyleTagAndFill();
