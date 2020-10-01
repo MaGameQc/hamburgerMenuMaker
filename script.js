@@ -7,14 +7,14 @@
 
 // console.log(Info);
 
-function HamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxName, labelName, lineName){
+function HamburgerMaker(hamburgerName){
     this.containerToAppend = document.getElementById("mainContainer");
     this.hamburgerName = hamburgerName;
-    this.containerName = hamburgerName + containerName ;
-    this.checkBoxName = hamburgerName + checkBoxName;
-    this.forCheckBoxName = hamburgerName + forCheckBoxName;
-    this.labelName = hamburgerName + labelName ;
-    this.lineName = hamburgerName + lineName ;
+    this.containerName = hamburgerName + "HamburgerContainer" ;
+    this.checkBoxName = hamburgerName + "Toggle";
+    this.forCheckBoxName = hamburgerName + "Toggle";
+    this.labelName = hamburgerName + "Label" ;
+    this.lineName = hamburgerName + "Line" ;
 
     this.container;
     this.checkBox;
@@ -24,29 +24,50 @@ function HamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
     this.generatedKeyframes = "";
 
     this.buildElements = function(){
-        this.container = document.createElement("div");
-        this.container.setAttribute("id", this.containerName);
-        this.containerToAppend.appendChild(this.container);
+        this.container = create("div", "id", this.containerName, this.containerToAppend);
 
-        this.checkBox = document.createElement("input");
-        this.checkBox.type = "checkbox";
-        this.checkBox.setAttribute("id", this.checkBoxName);
-        this.container.appendChild(this.checkBox);
+        this.checkBox = create("input", "id", this.checkBoxName, this.container, "checkbox")
 
-        this.label = document.createElement("label");
-        this.label.htmlFor = this.checkBoxName;
-        this.label.setAttribute("id", this.labelName);
-        this.container.appendChild(this.label);
+        this.label = create("label", "id", this.labelName, this.container, "label", this.checkBoxName);
+
 
         for(i = 0; i < 3; i++){
-            this.line = document.createElement("span");
-            this.line.setAttribute("class", this.lineName);
-            this.label.appendChild(this.line);
+            create("span", "class", this.lineName, this.label);
+        }
+
+        function create (tagName, idOrClass, idToGive, parent, type, labelForName) {
+            let element = document.createElement(tagName);
+            switch (idOrClass) {
+                case "id":
+                    element.setAttribute("id", idToGive);
+                    break;
+                case "class":
+                    element.setAttribute("class", idToGive);
+                    break;
+            
+                default:
+                    break;
+            }
+
+            switch (tagName) {
+                case "input":
+                    element.type = type;
+                    break;
+                case "label":
+                    element.htmlFor = labelForName;
+                    break;
+
+                default:
+                    break;
+            }
+
+            parent.appendChild(element);
+            return element
         }
     };
 
-    this.setContainerStyle = function(element){
-        let el = element.style; 
+    this.setContainerStyle = function(){
+        let el = this.container.style; 
         el.width = "300px";
         el.height = "300px";
         el.backgroundColor = "grey";
@@ -55,11 +76,10 @@ function HamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
         el.justifyContent = "space-evenly";
         el.alignItems = "center";
         el.flexDirection = "column";
-        // console.log(this.container);
     };
 
-    this.setLabelStyle = function(element){
-        let el = element.style; 
+    this.setLabelStyle = function(){
+        let el = this.label.style; 
         el.width = "80%";
         el.height = "80%";
         el.backgroundColor = "cadetblue";
@@ -70,13 +90,13 @@ function HamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
         // console.log(this.label);
     };
 
-    this.setCheckBoxStyle = function(element){
-        let el = element.style;
+    this.setCheckBoxStyle = function(){
+        let el = this.checkBox.style;
         el.position = "absolute";
         el.visibility = "hidden";
     };
 
-    this.setLineStyle = function(element){
+    this.setLineStyle = function(){
         for(i = 0; i < 3; i++){
         let el = document.getElementsByClassName(this.lineName)[i].style; 
         el.width = "80%";
@@ -198,7 +218,6 @@ function HamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
 
         this.cumulateCss = function(text){
             this.generatedKeyframes += text;
-            // console.log(this.generatedKeyframes);
         };
 
 
@@ -230,13 +249,13 @@ function HamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
 
 
 
-
-let theBullet = new HamburgerMaker("theBullet", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
+ 
+let theBullet = new HamburgerMaker("theBullet");
 theBullet.buildElements();
-theBullet.setContainerStyle(theBullet.container);
-theBullet.setLabelStyle(theBullet.label);
-theBullet.setCheckBoxStyle(theBullet.checkBox);
-theBullet.setLineStyle(theBullet.line);
+theBullet.setContainerStyle();
+theBullet.setLabelStyle();
+theBullet.setCheckBoxStyle();
+theBullet.setLineStyle();
 theBullet.generateEmbededHtml();
 
 let theBulletAnimationValues = {
@@ -307,12 +326,12 @@ theBullet.createStyleTagAndFill();
 /**************************************************************************************************************************slide Up */
 
 
-let robotic = new HamburgerMaker("robotic", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
+let robotic = new HamburgerMaker("robotic");
 robotic.buildElements();
-robotic.setContainerStyle(robotic.container);
-robotic.setLabelStyle(robotic.label);
-robotic.setCheckBoxStyle(robotic.checkBox);
-robotic.setLineStyle(robotic.line);
+robotic.setContainerStyle();
+robotic.setLabelStyle();
+robotic.setCheckBoxStyle();
+robotic.setLineStyle();
 robotic.generateEmbededHtml();
 
 
@@ -324,23 +343,23 @@ let roboticAnimationValues = {
     complexity : 3,
     line1 : {
         zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
+        twentyFive: [],
         fifty: ["center", "0", "200%", "0", "1", "1"],
-        seventyFive: ["", "", "", "", "", ""],
+        seventyFive: [],
         oneHundred: ["center", "0", "200%", "-45", "1", "1"],
     },
     line2 : {
         zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
         oneHundred: ["center", "0", "0", "0", "1", "0"],
     },
     line3 : {
         zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
+        twentyFive: [],
         fifty: ["center", "0", "-200%", "0", "1", "1"],
-        seventyFive: ["", "", "", "", "", ""],
+        seventyFive: [],
         oneHundred: ["center", "0", "-200%", "45", "1", "1"],
     }
 };
@@ -349,23 +368,23 @@ let roboticInitialValues = {
     complexity : 3,
     line1 : {
         zero: ["center", "0", "200%", "-45", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
+        twentyFive: [],
         fifty: ["center", "0", "200%", "0", "1", "1"],
-        seventyFive: ["", "", "", "", "", ""],
+        seventyFive: [],
         oneHundred: ["center", "0", "0", "0", "1", "1"],
     },
     line2 : {
         zero:  ["center", "0", "0", "0", "1", "0"],
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
         oneHundred: ["center", "0", "0", "0", "1", "1"],
     },
     line3 : {
         zero:  ["center", "0", "-200%", "45", "1", "1"],
-        twentyFive: ["", "", "", "", "", ""],
+        twentyFive: [],
         fifty: ["center", "0", "-200%", "0", "1", "1"],
-        seventyFive: ["", "", "", "", "", ""],
+        seventyFive: [],
         oneHundred: ["center", "0", "0", "0", "1", "1"],
     }
 };
@@ -385,24 +404,332 @@ robotic.checkBoxChecked("3", "Initial");
 robotic.createStyleTagAndFill();
 
 
-// console.log(robotic.generatedKeyframes);
+
+/******************************************************************************************************* slideUp ******************************/
+
+
+let slideUp = new HamburgerMaker("slideUp");
+slideUp.buildElements();
+slideUp.setContainerStyle();
+slideUp.setLabelStyle();
+slideUp.setCheckBoxStyle();
+slideUp.setLineStyle();
+slideUp.generateEmbededHtml();
 
 
 
 
 
 
+let slideUpAnimationValues = {
+    complexity : 5,
+    line1 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "0", "-400%", "0", "1", "0"],
+        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
+        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "0", "-400%", "0", "1", "0"],
+        seventyFive: ["center", "0", "0%", "0", "1", "0"],
+        oneHundred: ["center", "0", "0%", "0", "1", "0"],
+    },
+    line3 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "0", "-400%", "0", "1", "0"],
+        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
+        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
+    }
+};
+
+let slideUpInitialValues = {
+    complexity : 2,
+    line1 : {
+        zero: ["center", "0", "-400%", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "-400%", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line3 : {
+        zero: ["center", "0", "-400%", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+slideUp.generateKeyframes("Animate", slideUpAnimationValues);
+slideUp.generateKeyframes("Initial", slideUpInitialValues);
+
+slideUp.checkBoxChecked("1", "Animate");
+slideUp.checkBoxChecked("2", "Animate");
+slideUp.checkBoxChecked("3", "Animate");
+
+slideUp.checkBoxChecked("1", "Initial");
+slideUp.checkBoxChecked("2", "Initial");
+slideUp.checkBoxChecked("3", "Initial");
+
+slideUp.createStyleTagAndFill();
+
+
+
+
+/******************************************************************************************************* slideDown ******************************/
+
+let slideDown = new HamburgerMaker("slideDown");
+slideDown.buildElements();
+slideDown.setContainerStyle();
+slideDown.setLabelStyle();
+slideDown.setCheckBoxStyle();
+slideDown.setLineStyle();
+slideDown.generateEmbededHtml();
 
 
 
 
 
 
+let slideDownAnimationValues = {
+    complexity : 5,
+    line1 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "0", "400%", "0", "1", "0"],
+        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
+        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "0", "400%", "0", "1", "0"],
+        seventyFive: ["center", "0", "0%", "0", "1", "0"],
+        oneHundred: ["center", "0", "0%", "0", "1", "0"],
+    },
+    line3 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "0", "400%", "0", "1", "0"],
+        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
+        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
+    }
+};
+
+let slideDownInitialValues = {
+    complexity : 2,
+    line1 : {
+        zero: ["center", "0", "400%", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "400%", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line3 : {
+        zero: ["center", "0", "400%", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+slideDown.generateKeyframes("Animate", slideDownAnimationValues);
+slideDown.generateKeyframes("Initial", slideDownInitialValues);
+
+slideDown.checkBoxChecked("1", "Animate");
+slideDown.checkBoxChecked("2", "Animate");
+slideDown.checkBoxChecked("3", "Animate");
+
+slideDown.checkBoxChecked("1", "Initial");
+slideDown.checkBoxChecked("2", "Initial");
+slideDown.checkBoxChecked("3", "Initial");
+
+slideDown.createStyleTagAndFill();
+
+
+
+/******************************************************************************************************* slideLeft ******************************/
+
+let slideLeft = new HamburgerMaker("slideLeft");
+slideLeft.buildElements();
+slideLeft.setContainerStyle();
+slideLeft.setLabelStyle();
+slideLeft.setCheckBoxStyle();
+slideLeft.setLineStyle();
+slideLeft.generateEmbededHtml();
 
 
 
 
 
-/************************************************************* TO DO- retirer contenu css si object animation contient rien */
+
+let slideLeftAnimationValues = {
+    complexity : 5,
+    line1 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "-200%", "0", "0", "1", "0"],
+        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
+        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "-200%", "0", "0", "1", "0"],
+        seventyFive: ["center", "0", "0%", "0", "1", "0"],
+        oneHundred: ["center", "0", "0%", "0", "1", "0"],
+    },
+    line3 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "-200%", "0", "0", "1", "0"],
+        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
+        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
+    }
+};
+
+let slideLeftInitialValues = {
+    complexity : 2,
+    line1 : {
+        zero: ["center", "-200%", "0", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "-200%", "0", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line3 : {
+        zero: ["center", "-200%", "0", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+slideLeft.generateKeyframes("Animate", slideLeftAnimationValues);
+slideLeft.generateKeyframes("Initial", slideLeftInitialValues);
+
+slideLeft.checkBoxChecked("1", "Animate");
+slideLeft.checkBoxChecked("2", "Animate");
+slideLeft.checkBoxChecked("3", "Animate");
+
+slideLeft.checkBoxChecked("1", "Initial");
+slideLeft.checkBoxChecked("2", "Initial");
+slideLeft.checkBoxChecked("3", "Initial");
+
+slideLeft.createStyleTagAndFill();
+
+/******************************************************************************************************* slideRight ******************************/
+let slideRight = new HamburgerMaker("slideRight");
+slideRight.buildElements();
+slideRight.setContainerStyle();
+slideRight.setLabelStyle();
+slideRight.setCheckBoxStyle();
+slideRight.setLineStyle();
+slideRight.generateEmbededHtml();
+
+
+
+
+
+
+let slideRightAnimationValues = {
+    complexity : 5,
+    line1 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "200%", "0", "0", "1", "0"],
+        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
+        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "200%", "0", "0", "1", "0"],
+        seventyFive: ["center", "0", "0%", "0", "1", "0"],
+        oneHundred: ["center", "0", "0%", "0", "1", "0"],
+    },
+    line3 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: ["center", "200%", "0", "0", "1", "0"],
+        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
+        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
+    }
+};
+
+let slideRightInitialValues = {
+    complexity : 2,
+    line1 : {
+        zero: ["center", "200%", "0", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "200%", "0", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line3 : {
+        zero: ["center", "200%", "0", "0", "1", "0"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive:  [],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+slideRight.generateKeyframes("Animate", slideRightAnimationValues);
+slideRight.generateKeyframes("Initial", slideRightInitialValues);
+
+slideRight.checkBoxChecked("1", "Animate");
+slideRight.checkBoxChecked("2", "Animate");
+slideRight.checkBoxChecked("3", "Animate");
+
+slideRight.checkBoxChecked("1", "Initial");
+slideRight.checkBoxChecked("2", "Initial");
+slideRight.checkBoxChecked("3", "Initial");
+
+slideRight.createStyleTagAndFill();
+
+
+
+
+
+/************************************************************* TO DO- retirer contenu css si object animation contient rien , animation delay, change style*/
 
 // console.log(roboticAnimationValues.line1.twentyFive.toString().replace(/,/g, ""));
