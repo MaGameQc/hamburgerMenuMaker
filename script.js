@@ -95,18 +95,29 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
         parent.appendChild(child);
     };
 
-
-
-        this.generateKeyframes = function(indx, state, from1, from2, from3, to1, to2, to3){
+        this.generateKeyframes = function(state, animationObject){
+            let indx = 1;
+            let text = "";
             let animLine = this.hamburgerName + state;
-            let defaultLine = this.hamburgerName + "Default";
-            let text = 
-            "\n" +
-            "@keyframes " + animLine + indx + "{" + "\n" +
-            "from{ " + from1 + from2 + from3 + " }" + "\n" +
-            "to{ " + to1 + to2 + to3 + " }" + "\n" +
-            "}" + "\n"  
-            ;
+            // let defaultLine = this.hamburgerName + "Default";
+            
+            for(key in animationObject){
+                let keyframes = 
+                "\n" +
+                "@keyframes " + animLine + indx + "{" + "\n" +
+                "0%{ transform-origin: " + animationObject[key].zero[0] + "; transform : translate(" + animationObject[key].zero[1] + ", " + animationObject[key].zero[2] + ") rotate(" + animationObject[key].zero[3] + "deg) scale(" + animationObject[key].zero[4] + ");  opacity: " + animationObject[key].zero[5] + ";}" + "\n" +
+                "25%{ transform-origin: " + animationObject[key].twentyFive[0] + "; transform : translate(" + animationObject[key].twentyFive[1] + ", " + animationObject[key].twentyFive[2] + ") rotate(" + animationObject[key].twentyFive[3] + "deg) scale(" + animationObject[key].twentyFive[4] + ");  opacity: " + animationObject[key].twentyFive[5] + ";}" + "\n" +
+                "50%{ transform-origin: " + animationObject[key].fifty[0] + "; transform : translate(" + animationObject[key].fifty[1] + ", " + animationObject[key].fifty[2] + ") rotate(" + animationObject[key].fifty[3] + "deg) scale(" + animationObject[key].fifty[4] + ");  opacity: " + animationObject[key].fifty[5] + ";}" + "\n" +
+                "75%{ transform-origin: " + animationObject[key].seventyFive[0] + "; transform : translate(" + animationObject[key].seventyFive[1] + ", " + animationObject[key].seventyFive[2] + ") rotate(" + animationObject[key].seventyFive[3] + "deg) scale(" + animationObject[key].seventyFive[4] + ");  opacity: " + animationObject[key].seventyFive[5] + ";}" + "\n" +
+                "100%{ transform-origin: " + animationObject[key].oneHundred[0] + "; transform : translate(" + animationObject[key].oneHundred[1] + ", " + animationObject[key].oneHundred[2] + ") rotate(" + animationObject[key].oneHundred[3] + "deg) scale(" + animationObject[key].oneHundred[4] + ");  opacity: " + animationObject[key].oneHundred[5] + ";}" + "\n" +
+                "}" + "\n"
+                ;
+                indx ++
+                text += keyframes;
+                
+                
+            }
+
             this.cumulateCss(text);
 
         };
@@ -137,8 +148,8 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
         };
 
         this.cumulateCss = function(text){
-            let content = text;
-            this.generatedKeyframes += content;
+            this.generatedKeyframes += text;
+            // console.log(this.generatedKeyframes);
         };
 
 
@@ -152,7 +163,7 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
         };
 
         this.converCssTagToCopy = function(styleTag){
-            console.log(styleTag);
+            // console.log(styleTag);
             let content = styleTag.outerHTML;
             let parent = document.getElementById("toCopy");
             let br = document.createElement("br");
@@ -179,13 +190,57 @@ theBullet.setCheckBoxStyle(theBullet.checkBox);
 theBullet.setLineStyle(theBullet.line);
 theBullet.generateEmbededHtml();
 
-theBullet.generateKeyframes("1","Animate", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform:  translateY(200%) rotateZ(-45deg);", "");
-theBullet.generateKeyframes("2","Animate", "transform-origin: center;", "transform : translateX(0);", "opacity: 1;", "transform-origin: center;", "transform : translateX(-100%);", "opacity: 0;");
-theBullet.generateKeyframes("3","Animate", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform : translateY(-200%) rotateZ(45deg);", "");
+let theBulletAnimationValues = {
+    line1 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "-100%", "0", "0", "1", "0"],
+    },
+    line3 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
+    }
+};
 
-theBullet.generateKeyframes("1","Initial", "transform-origin: center;",  "transform:  translateY(200%) rotateZ(-45deg);", "",  "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
-theBullet.generateKeyframes("2","Initial", "transform-origin: center;", "transform : translateX(-100%); opacity: 0;", "", "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
-theBullet.generateKeyframes("3","Initial", "transform-origin: center;",  "transform:  translateY(-200%) rotateZ(45deg);", "", "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
+let theBulletInitialValues = {
+    line1 : {
+        zero: ["center", "0", "200%", "-45", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero:  ["center", "0", "0", "0", "1", "0"],
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line3 : {
+        zero:  ["center", "0", "-200%", "45", "1", "1"],
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+theBullet.generateKeyframes("Animate", theBulletAnimationValues);
+theBullet.generateKeyframes("Initial", theBulletInitialValues);
 
 theBullet.checkBoxChecked("1", "Animate");
 theBullet.checkBoxChecked("2", "Animate");
@@ -198,9 +253,8 @@ theBullet.checkBoxChecked("3", "Initial");
 theBullet.createStyleTagAndFill();
 
 
-
-
 /**************************************************************************************************************************slide Up */
+
 
 let robotic = new hamburgerMaker("robotic", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
 robotic.buildElements();
@@ -210,22 +264,92 @@ robotic.setCheckBoxStyle(robotic.checkBox);
 robotic.setLineStyle(robotic.line);
 robotic.generateEmbededHtml();
 
-console.log(document.getElementById("slideUpHamburgerContainer"));
 
-robotic.generateKeyframes("1","Animate", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform:  translateY(200%) rotateZ(-45deg);", "");
-robotic.generateKeyframes("2","Animate", "transform-origin: center;", "transform : translateX(0);", "opacity: 1;", "transform-origin: center;", "transform : translateX(-100%);", "opacity: 0;");
-robotic.generateKeyframes("3","Animate", "transform-origin: center;", "transform : rotate(0deg);", "", "transform-origin: center;", "transform : translateY(-200%) rotateZ(45deg);", "");
 
-robotic.generateKeyframes("1","Initial", "transform-origin: center;",  "transform:  translateY(200%) rotateZ(-45deg);", "",  "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
-robotic.generateKeyframes("2","Initial", "transform-origin: center;", "transform : translateX(-100%); opacity: 0;", "", "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
-robotic.generateKeyframes("3","Initial", "transform-origin: center;",  "transform:  translateY(-200%) rotateZ(45deg);", "", "transform-origin: center;", "transform:  translateY(0) rotateZ(0deg);", "");
 
-// slideUp.checkBoxChecked("1", "Animate");
-// slideUp.checkBoxChecked("2", "Animate");
-// slideUp.checkBoxChecked("3", "Animate");
 
-// slideUp.checkBoxChecked("1", "Initial");
-// slideUp.checkBoxChecked("2", "Initial");
-// slideUp.checkBoxChecked("3", "Initial");
 
-// robotic.createStyleTagAndFill();
+let roboticAnimationValues = {
+    line1 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["center", "0", "200%", "0", "1", "1"],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "0", "0", "1", "0"],
+    },
+    line3 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["center", "0", "-200%", "0", "1", "1"],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
+    }
+};
+
+let roboticInitialValues = {
+    line1 : {
+        zero: ["center", "0", "200%", "-45", "1", "1"], 
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["center", "0", "200%", "0", "1", "1"],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero:  ["center", "0", "0", "0", "1", "0"],
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["", "", "", "", "", ""],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    },
+    line3 : {
+        zero:  ["center", "0", "-200%", "45", "1", "1"],
+        twentyFive: ["", "", "", "", "", ""],
+        fifty: ["center", "0", "-200%", "0", "1", "1"],
+        seventyFive: ["", "", "", "", "", ""],
+        oneHundred: ["center", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+robotic.generateKeyframes("Animate", roboticAnimationValues);
+robotic.generateKeyframes("Initial", roboticInitialValues);
+
+robotic.checkBoxChecked("1", "Animate");
+robotic.checkBoxChecked("2", "Animate");
+robotic.checkBoxChecked("3", "Animate");
+
+robotic.checkBoxChecked("1", "Initial");
+robotic.checkBoxChecked("2", "Initial");
+robotic.checkBoxChecked("3", "Initial");
+
+robotic.createStyleTagAndFill();
+
+
+console.log(robotic.generatedKeyframes);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************************************************************* TO DO- retirer contenu css si object animation contient rien */
+
+// console.log(roboticAnimationValues.line1.twentyFive.toString().replace(/,/g, ""));
