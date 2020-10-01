@@ -99,7 +99,6 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
             let indx = 1;
             let text = "";
             let animLine = this.hamburgerName + state;
-            // let defaultLine = this.hamburgerName + "Default";
             
             for(key in animationObject){
                 let keyframes = 
