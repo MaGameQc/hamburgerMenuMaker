@@ -7,7 +7,7 @@
 
 // console.log(Info);
 
-function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxName, labelName, lineName){
+function HamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxName, labelName, lineName){
     this.containerToAppend = document.getElementById("mainContainer");
     this.hamburgerName = hamburgerName;
     this.containerName = hamburgerName + containerName ;
@@ -99,24 +99,74 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
             let indx = 1;
             let text = "";
             let animLine = this.hamburgerName + state;
+            let animationComplexity = animationObject.complexity;
             
-            for(key in animationObject){
-                let keyframes = 
-                "\n" +
-                "@keyframes " + animLine + indx + "{" + "\n" +
-                "0%{ transform-origin: " + animationObject[key].zero[0] + "; transform : translate(" + animationObject[key].zero[1] + ", " + animationObject[key].zero[2] + ") rotate(" + animationObject[key].zero[3] + "deg) scale(" + animationObject[key].zero[4] + ");  opacity: " + animationObject[key].zero[5] + ";}" + "\n" +
-                "25%{ transform-origin: " + animationObject[key].twentyFive[0] + "; transform : translate(" + animationObject[key].twentyFive[1] + ", " + animationObject[key].twentyFive[2] + ") rotate(" + animationObject[key].twentyFive[3] + "deg) scale(" + animationObject[key].twentyFive[4] + ");  opacity: " + animationObject[key].twentyFive[5] + ";}" + "\n" +
-                "50%{ transform-origin: " + animationObject[key].fifty[0] + "; transform : translate(" + animationObject[key].fifty[1] + ", " + animationObject[key].fifty[2] + ") rotate(" + animationObject[key].fifty[3] + "deg) scale(" + animationObject[key].fifty[4] + ");  opacity: " + animationObject[key].fifty[5] + ";}" + "\n" +
-                "75%{ transform-origin: " + animationObject[key].seventyFive[0] + "; transform : translate(" + animationObject[key].seventyFive[1] + ", " + animationObject[key].seventyFive[2] + ") rotate(" + animationObject[key].seventyFive[3] + "deg) scale(" + animationObject[key].seventyFive[4] + ");  opacity: " + animationObject[key].seventyFive[5] + ";}" + "\n" +
-                "100%{ transform-origin: " + animationObject[key].oneHundred[0] + "; transform : translate(" + animationObject[key].oneHundred[1] + ", " + animationObject[key].oneHundred[2] + ") rotate(" + animationObject[key].oneHundred[3] + "deg) scale(" + animationObject[key].oneHundred[4] + ");  opacity: " + animationObject[key].oneHundred[5] + ";}" + "\n" +
-                "}" + "\n"
-                ;
-                indx ++
-                text += keyframes;
-                
-                
-            }
+            
+            switch (animationComplexity) {
+                case 2:
+                    for(key in animationObject){
+                        if(animationObject[key] == animationObject["complexity"]){
+                            console.log("this is so wrong");
+                        }else{
+                            let keyframes = 
+                            "\n" +
+                            "@keyframes " + animLine + indx + "{" + "\n" +
+                            "0%{ transform-origin: " + animationObject[key].zero[0] + "; transform : translate(" + animationObject[key].zero[1] + ", " + animationObject[key].zero[2] + ") rotate(" + animationObject[key].zero[3] + "deg) scale(" + animationObject[key].zero[4] + ");  opacity: " + animationObject[key].zero[5] + ";}" + "\n" +
+                            "25%{ }" + "\n" +
+                            "50%{ }" + "\n" +
+                            "75%{ }" + "\n" +
+                            "100%{ transform-origin: " + animationObject[key].oneHundred[0] + "; transform : translate(" + animationObject[key].oneHundred[1] + ", " + animationObject[key].oneHundred[2] + ") rotate(" + animationObject[key].oneHundred[3] + "deg) scale(" + animationObject[key].oneHundred[4] + ");  opacity: " + animationObject[key].oneHundred[5] + ";}" + "\n" +
+                            "}" + "\n"
+                            ;
+                            indx ++
+                            text += keyframes;
+                        }
+                    }
+                    break;
 
+                case 3:
+                    for(key in animationObject){
+                        if(animationObject[key] == animationObject["complexity"]){
+                            console.log("this is so wrong");
+                        }else{
+                            let keyframes = 
+                            "\n" +
+                            "@keyframes " + animLine + indx + "{" + "\n" +
+                            "0%{ transform-origin: " + animationObject[key].zero[0] + "; transform : translate(" + animationObject[key].zero[1] + ", " + animationObject[key].zero[2] + ") rotate(" + animationObject[key].zero[3] + "deg) scale(" + animationObject[key].zero[4] + ");  opacity: " + animationObject[key].zero[5] + ";}" + "\n" +
+                            "25%{ }" + "\n" +
+                            "50%{ transform-origin: " + animationObject[key].fifty[0] + "; transform : translate(" + animationObject[key].fifty[1] + ", " + animationObject[key].fifty[2] + ") rotate(" + animationObject[key].fifty[3] + "deg) scale(" + animationObject[key].fifty[4] + ");  opacity: " + animationObject[key].fifty[5] + ";}" + "\n" +
+                            "75%{ }" + "\n" +
+                            "100%{ transform-origin: " + animationObject[key].oneHundred[0] + "; transform : translate(" + animationObject[key].oneHundred[1] + ", " + animationObject[key].oneHundred[2] + ") rotate(" + animationObject[key].oneHundred[3] + "deg) scale(" + animationObject[key].oneHundred[4] + ");  opacity: " + animationObject[key].oneHundred[5] + ";}" + "\n" +
+                            "}" + "\n"
+                            ;
+                            indx ++
+                            text += keyframes;
+                        }
+                    }
+                    break;
+                case 5:
+                        for(key in animationObject){
+                            if(animationObject[key] == animationObject["complexity"]){
+                                console.log("this is so wrong");
+                            }else{
+                                let keyframes = 
+                                "\n" +
+                                "@keyframes " + animLine + indx + "{" + "\n" +
+                                "0%{ transform-origin: " + animationObject[key].zero[0] + "; transform : translate(" + animationObject[key].zero[1] + ", " + animationObject[key].zero[2] + ") rotate(" + animationObject[key].zero[3] + "deg) scale(" + animationObject[key].zero[4] + ");  opacity: " + animationObject[key].zero[5] + ";}" + "\n" +
+                                "25%{ transform-origin: " + animationObject[key].twentyFive[0] + "; transform : translate(" + animationObject[key].twentyFive[1] + ", " + animationObject[key].twentyFive[2] + ") rotate(" + animationObject[key].twentyFive[3] + "deg) scale(" + animationObject[key].twentyFive[4] + ");  opacity: " + animationObject[key].twentyFive[5] + ";}" + "\n" +
+                                "50%{ transform-origin: " + animationObject[key].fifty[0] + "; transform : translate(" + animationObject[key].fifty[1] + ", " + animationObject[key].fifty[2] + ") rotate(" + animationObject[key].fifty[3] + "deg) scale(" + animationObject[key].fifty[4] + ");  opacity: " + animationObject[key].fifty[5] + ";}" + "\n" +
+                                "75%{ transform-origin: " + animationObject[key].seventyFive[0] + "; transform : translate(" + animationObject[key].seventyFive[1] + ", " + animationObject[key].seventyFive[2] + ") rotate(" + animationObject[key].seventyFive[3] + "deg) scale(" + animationObject[key].seventyFive[4] + ");  opacity: " + animationObject[key].seventyFive[5] + ";}" + "\n" +
+                                "100%{ transform-origin: " + animationObject[key].oneHundred[0] + "; transform : translate(" + animationObject[key].oneHundred[1] + ", " + animationObject[key].oneHundred[2] + ") rotate(" + animationObject[key].oneHundred[3] + "deg) scale(" + animationObject[key].oneHundred[4] + ");  opacity: " + animationObject[key].oneHundred[5] + ";}" + "\n" +
+                                "}" + "\n"
+                                ;
+                                indx ++
+                                text += keyframes;
+                            }
+                        }
+                    break;
+                default:
+                    break;
+            }
             this.cumulateCss(text);
 
         };
@@ -181,7 +231,7 @@ function hamburgerMaker(hamburgerName, containerName, checkBoxName, forCheckBoxN
 
 
 
-let theBullet = new hamburgerMaker("theBullet", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
+let theBullet = new HamburgerMaker("theBullet", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
 theBullet.buildElements();
 theBullet.setContainerStyle(theBullet.container);
 theBullet.setLabelStyle(theBullet.label);
@@ -190,6 +240,7 @@ theBullet.setLineStyle(theBullet.line);
 theBullet.generateEmbededHtml();
 
 let theBulletAnimationValues = {
+    complexity : 2,
     line1 : {
         zero: ["center", "0", "0", "0", "1", "1"], 
         twentyFive: ["", "", "", "", "", ""],
@@ -214,6 +265,7 @@ let theBulletAnimationValues = {
 };
 
 let theBulletInitialValues = {
+    complexity : 2,
     line1 : {
         zero: ["center", "0", "200%", "-45", "1", "1"], 
         twentyFive: ["", "", "", "", "", ""],
@@ -255,7 +307,7 @@ theBullet.createStyleTagAndFill();
 /**************************************************************************************************************************slide Up */
 
 
-let robotic = new hamburgerMaker("robotic", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
+let robotic = new HamburgerMaker("robotic", "HamburgerContainer", "Toggle", "Toggle", "Label", "Line");
 robotic.buildElements();
 robotic.setContainerStyle(robotic.container);
 robotic.setLabelStyle(robotic.label);
@@ -269,6 +321,7 @@ robotic.generateEmbededHtml();
 
 
 let roboticAnimationValues = {
+    complexity : 3,
     line1 : {
         zero: ["center", "0", "0", "0", "1", "1"], 
         twentyFive: ["", "", "", "", "", ""],
@@ -293,6 +346,7 @@ let roboticAnimationValues = {
 };
 
 let roboticInitialValues = {
+    complexity : 3,
     line1 : {
         zero: ["center", "0", "200%", "-45", "1", "1"], 
         twentyFive: ["", "", "", "", "", ""],
@@ -331,7 +385,7 @@ robotic.checkBoxChecked("3", "Initial");
 robotic.createStyleTagAndFill();
 
 
-console.log(robotic.generatedKeyframes);
+// console.log(robotic.generatedKeyframes);
 
 
 
