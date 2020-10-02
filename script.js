@@ -70,7 +70,7 @@ function HamburgerMaker(hamburgerName){
         let el = this.container.style; 
         el.width = "300px";
         el.height = "300px";
-        el.backgroundColor = "grey";
+        el.backgroundColor = "#0D7377";
         el.position = "relative";
         el.display = "flex";
         el.justifyContent = "space-evenly";
@@ -82,11 +82,12 @@ function HamburgerMaker(hamburgerName){
         let el = this.label.style; 
         el.width = "80%";
         el.height = "80%";
-        el.backgroundColor = "cadetblue";
+        el.backgroundColor = "#F7F7EE";
         el.display = "flex";
         el.alignItems = "center";
         el.flexDirection = "column";
         el.cursor = "pointer";
+        el.borderRadius = "15px";
         // console.log(this.label);
     };
 
@@ -102,8 +103,9 @@ function HamburgerMaker(hamburgerName){
         el.width = "80%";
         el.height = "14%";
         el.marginTop = "14%";
-        el.backgroundColor = "white";
+        el.backgroundColor = "#FB7813";
         el.position = "relative";
+        el.borderRadius = "12px";
         // console.log(this.line);
         }
     };
@@ -126,7 +128,6 @@ function HamburgerMaker(hamburgerName){
                 case 2:
                     for(key in animationObject){
                         if(animationObject[key] == animationObject["complexity"]){
-                            console.log("this is so wrong");
                         }else{
                             let keyframes = 
                             "\n" +
@@ -147,7 +148,6 @@ function HamburgerMaker(hamburgerName){
                 case 3:
                     for(key in animationObject){
                         if(animationObject[key] == animationObject["complexity"]){
-                            console.log("this is so wrong");
                         }else{
                             let keyframes = 
                             "\n" +
@@ -167,7 +167,6 @@ function HamburgerMaker(hamburgerName){
                 case 5:
                         for(key in animationObject){
                             if(animationObject[key] == animationObject["complexity"]){
-                                console.log("this is so wrong");
                             }else{
                                 let keyframes = 
                                 "\n" +
@@ -246,8 +245,92 @@ function HamburgerMaker(hamburgerName){
 }
 
 
+////////////////////////////////////////////// TO DO ANIMATION CONSCTRUCTOR  /////////////////////////////////////////
+
+function AnimationConstructor(complexity, allSequences){
+    this.complexity = complexity;
+    this.allSequences = allSequences;
+    this.objectToCreate = {};
+    this.objectToReverse = {};
 
 
+    
+    this.createAnimationObject = function(){
+        if(complexity == 2){
+            this.objectToCreate.complexity = 2;
+            this.objectToCreate.line1 = {zero : allSequences[0], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[1], };
+            this.objectToCreate.line2 = {zero : allSequences[2], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[3], };
+            this.objectToCreate.line3 = {zero : allSequences[4], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[5], };
+            console.log(this.objectToCreate);
+            console.log("og");
+
+            return this.objectToCreate
+        }
+        if(complexity == 3){
+            this.objectToCreate.complexity = 3;
+            this.objectToCreate.line1 = {zero : allSequences[0], twentyFive : [], fifty : allSequences[1], seventyFive : [], oneHundred : allSequences[2], };
+            this.objectToCreate.line2 = {zero : allSequences[3], twentyFive : [], fifty : allSequences[4], seventyFive : [], oneHundred : allSequences[5], };
+            this.objectToCreate.line3 = {zero : allSequences[6], twentyFive : [], fifty : allSequences[7], seventyFive : [], oneHundred : allSequences[8], };
+            return this.objectToCreate
+        }
+        if(complexity == 5){
+            this.objectToCreate.complexity = 5;
+            this.objectToCreate.line1 = {zero : allSequences[0], twentyFive : allSequences[1], fifty : allSequences[2], seventyFive : allSequences[3], oneHundred : allSequences[4], };
+            this.objectToCreate.line2 = {zero : allSequences[5], twentyFive : allSequences[6], fifty : allSequences[7], seventyFive : allSequences[8], oneHundred : allSequences[9], };
+            this.objectToCreate.line3 = {zero : allSequences[10], twentyFive : allSequences[11], fifty : allSequences[12], seventyFive : allSequences[13], oneHundred : allSequences[14], };
+            return this.objectToCreate
+        }
+
+    }
+
+    // this.reverseAnimationObject = function(animationToReverse){
+    //     console.log(animationToReverse);
+    //     if(complexity == 2){
+    //         this.objectToReverse.complexity = 2;
+    //         this.objectToReverse.line1 = {zero : animationToReverse[1], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[0], };
+    //         this.objectToReverse.line2 = {zero : animationToReverse[3], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[2], };
+    //         this.objectToReverse.line3 = {zero : animationToReverse[5], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[4], };
+    //         console.log(this.objectToReverse);
+    //         return this.objectToReverse
+    //     }
+    //     if(complexity == 3){
+    //         this.objectToReverse.complexity = 2;
+    //         this.objectToReverse.line1 = {zero : animationToReverse[2], twentyFive : [], fifty : animationToReverse[1], seventyFive : [], oneHundred : animationToReverse[0], };
+    //         this.objectToReverse.line2 = {zero : animationToReverse[5], twentyFive : [], fifty : animationToReverse[4], seventyFive : [], oneHundred : animationToReverse[3], };
+    //         this.objectToReverse.line3 = {zero : animationToReverse[8], twentyFive : [], fifty : animationToReverse[7], seventyFive : [], oneHundred : animationToReverse[6], };
+    //         return this.objectToReverse
+    //     }
+    //     // if(complexity == 5){
+    //     //     this.objectToReverse.complexity = 2;
+    //     //     this.objectToReverse.line1 = {zero : allSequences[0], twentyFive : allSequences[1], fifty : allSequences[2], seventyFive : allSequences[3], oneHundred : allSequences[4], };
+    //     //     this.objectToReverse.line2 = {zero : allSequences[5], twentyFive : allSequences[6], fifty : allSequences[7], seventyFive : allSequences[8], oneHundred : allSequences[9], };
+    //     //     this.objectToReverse.line3 = {zero : allSequences[10], twentyFive : allSequences[11], fifty : allSequences[12], seventyFive : allSequences[13], oneHundred : allSequences[14], };
+    //     //     this.reverseAnimationObject(this.complexity, this.objectToCreate);
+    //     // }
+    // }
+}
+
+
+
+let theBulletAnimationTemplate = new AnimationConstructor(
+    2,
+    [
+    ["center", "0", "0", "0", "1", "1"], 
+    ["center", "0", "200%", "-45", "1", "1"],
+    ["center", "0", "0", "0", "1", "1"], 
+    ["center", "-100%", "0", "0", "1", "0"],
+    ["center", "0", "0", "0", "1", "1"], 
+    ["center", "0", "-200%", "45", "1", "1"],
+    ]
+);
+
+
+ let theBulletAnimateValues = theBulletAnimationTemplate.createAnimationObject();
+//  console.log(theBulletAnimateValues);
+//  let theBulletInitialValues = theBulletAnimationTemplate.reverseAnimationObject(theBulletAnimateValues);                              RENDUE LA
+ 
+
+////////////////////////////////////////////// TO DO ANIMATION CONSCTRUCTOR  /////////////////////////////////////////
 
  
 let theBullet = new HamburgerMaker("theBullet");
@@ -258,59 +341,59 @@ theBullet.setCheckBoxStyle();
 theBullet.setLineStyle();
 theBullet.generateEmbededHtml();
 
-let theBulletAnimationValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
-        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
-        oneHundred: ["center", "-100%", "0", "0", "1", "0"],
-    },
-    line3 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
-        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
-    }
-};
+// let theBulletAnimationValues = {
+//     complexity : 2,
+//     line1 : {
+//         zero: ["center", "0", "0", "0", "1", "1"], 
+//         twentyFive: [],
+//         fifty: [],
+//         seventyFive: [],
+//         oneHundred: ["center", "0", "200%", "-45", "1", "1"],
+//     },
+//     line2 : {
+//         zero: ["center", "0", "0", "0", "1", "1"], 
+//         twentyFive: [],
+//         fifty: [],
+//         seventyFive: [],
+//         oneHundred: ["center", "-100%", "0", "0", "1", "0"],
+//     },
+//     line3 : {
+//         zero: ["center", "0", "0", "0", "1", "1"], 
+//         twentyFive: [],
+//         fifty: [],
+//         seventyFive: [],
+//         oneHundred: ["center", "0", "-200%", "45", "1", "1"],
+//     }
+// };
 
-let theBulletInitialValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["center", "0", "200%", "-45", "1", "1"], 
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero:  ["center", "0", "0", "0", "1", "0"],
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line3 : {
-        zero:  ["center", "0", "-200%", "45", "1", "1"],
-        twentyFive: ["", "", "", "", "", ""],
-        fifty: ["", "", "", "", "", ""],
-        seventyFive: ["", "", "", "", "", ""],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    }
-};
+// let theBulletInitialValues = {
+//     complexity : 2,
+//     line1 : {
+//         zero: ["center", "0", "200%", "-45", "1", "1"], 
+//         twentyFive: [],
+//         fifty: [],
+//         seventyFive: [],
+//         oneHundred: ["center", "0", "0", "0", "1", "1"],
+//     },
+//     line2 : {
+//         zero:  ["center", "0", "0", "0", "1", "0"],
+//         twentyFive: [],
+//         fifty: [],
+//         seventyFive: [],
+//         oneHundred: ["center", "0", "0", "0", "1", "1"],
+//     },
+//     line3 : {
+//         zero:  ["center", "0", "-200%", "45", "1", "1"],
+//         twentyFive: [],
+//         fifty: [],
+//         seventyFive: [],
+//         oneHundred: ["center", "0", "0", "0", "1", "1"],
+//     }
+// };
 
 
-theBullet.generateKeyframes("Animate", theBulletAnimationValues);
-theBullet.generateKeyframes("Initial", theBulletInitialValues);
+theBullet.generateKeyframes("Animate", theBulletAnimateValues);
+// theBullet.generateKeyframes("Initial", theBulletInitialValues);                                     RENDU LA
 
 theBullet.checkBoxChecked("1", "Animate");
 theBullet.checkBoxChecked("2", "Animate");
@@ -725,6 +808,181 @@ slideRight.checkBoxChecked("2", "Initial");
 slideRight.checkBoxChecked("3", "Initial");
 
 slideRight.createStyleTagAndFill();
+
+
+
+
+
+
+/******************************************************************************************************* arrow rigt ******************************/
+let arrowLeft = new HamburgerMaker("arrowLeft");
+arrowLeft.buildElements();
+arrowLeft.setContainerStyle();
+arrowLeft.setLabelStyle();
+arrowLeft.setCheckBoxStyle();
+arrowLeft.setLineStyle();
+arrowLeft.generateEmbededHtml();
+
+
+
+
+
+
+let arrowLeftAnimationValues = {
+    complexity : 2,
+    line1 : {
+        zero: ["left", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["left", "0", "220%", "-45", "0.7", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["center", "0", "0%", "0", "1", "1"],
+    },
+    line3 : {
+        zero: ["left", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["left", "0", "-220%", "45", "0.7", "1"],
+    }
+};
+
+let arrowLeftInitialValues = {
+    complexity : 2,
+    line1 : {
+        zero:  ["left", "0", "220%", "-45", "0.7", "1"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["left", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["center", "0", "0%", "0", "1", "1"],
+    },
+    line3 : {
+        zero:  ["left", "0", "-220%", "45", "0.7", "1"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["left", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+arrowLeft.generateKeyframes("Animate", arrowLeftAnimationValues);
+arrowLeft.generateKeyframes("Initial", arrowLeftInitialValues);
+
+arrowLeft.checkBoxChecked("1", "Animate");
+arrowLeft.checkBoxChecked("2", "Animate");
+arrowLeft.checkBoxChecked("3", "Animate");
+
+arrowLeft.checkBoxChecked("1", "Initial");
+arrowLeft.checkBoxChecked("2", "Initial");
+arrowLeft.checkBoxChecked("3", "Initial");
+
+arrowLeft.createStyleTagAndFill();
+
+
+
+
+/******************************************************************************************************* arrow Left ******************************/
+
+let arrowRight = new HamburgerMaker("arrowRight");
+arrowRight.buildElements();
+arrowRight.setContainerStyle();
+arrowRight.setLabelStyle();
+arrowRight.setCheckBoxStyle();
+arrowRight.setLineStyle();
+arrowRight.generateEmbededHtml();
+
+
+
+
+
+
+let arrowRightAnimationValues = {
+    complexity : 2,
+    line1 : {
+        zero: ["right", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["right", "0", "220%", "45", "0.7", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["center", "0", "0%", "0", "1", "1"],
+    },
+    line3 : {
+        zero: ["right", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["right", "0", "-220%", "-45", "0.7", "1"],
+    }
+};
+
+let arrowRightInitialValues = {
+    complexity : 2,
+    line1 : {
+        zero:  ["right", "0", "220%", "45", "0.7", "1"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["right", "0", "0", "0", "1", "1"],
+    },
+    line2 : {
+        zero: ["center", "0", "0", "0", "1", "1"], 
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["center", "0", "0%", "0", "1", "1"],
+    },
+    line3 : {
+        zero:  ["right", "0", "-220%", "-45", "0.7", "1"],
+        twentyFive: [],
+        fifty: [],
+        seventyFive: [],
+        oneHundred: ["right", "0", "0", "0", "1", "1"],
+    }
+};
+
+
+arrowRight.generateKeyframes("Animate", arrowRightAnimationValues);
+arrowRight.generateKeyframes("Initial", arrowRightInitialValues);
+
+arrowRight.checkBoxChecked("1", "Animate");
+arrowRight.checkBoxChecked("2", "Animate");
+arrowRight.checkBoxChecked("3", "Animate");
+
+arrowRight.checkBoxChecked("1", "Initial");
+arrowRight.checkBoxChecked("2", "Initial");
+arrowRight.checkBoxChecked("3", "Initial");
+
+arrowRight.createStyleTagAndFill();
+
+
+
+
+
+
+
+
+
+
 
 
 

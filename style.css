@@ -1,227 +1,44 @@
-#theBulletToggle{
-    /* position: absolute;
-    visibility: hidden; */
-}
-
-#theBulletHamburgerContainer{
-    /* width: 300px;
-    height: 300px;
-    background-color: grey;
-    position: relative;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column; */
-}
-
-.theBulletLine{
-    /* margin-top: 14%;
-    width: 80%;
-    height: 14%;
-    display: flex;
-    background-color: white;
-    position: relative; */
-}
-
-#theBulletLabel{
-    /* height: 80%;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color: cadetblue;
-    cursor: pointer; */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 
-@keyframes theBulletAnimate1{
-    from{transform-origin: center; transform : rotate(0deg);}
-    to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }
+#main{
+    display: grid;
+    grid-template-areas: 
+    "navBar navBar"
+    "header header"
+    "item1 item2"
+    "item2 item1"
+    "copyTitle copyTitle"
+    "code code"
+    "copy copy"
+    ;
+    grid-template-rows: 10vh 20vh 40vh 40vh 20vh 40vh 10vh;
 }
 
-@keyframes theBulletAnimate2{
-    from{transform-origin: center; transform : translateX(0); opacity: 1;}
-    to{transform-origin: center; transform : translateX(-100%); opacity: 0; }
-}
-
-@keyframes theBulletAnimate3{
-    from{transform-origin: center; transform : rotate(0deg)}
-    to{transform-origin: center; transform : translateY(-200%) rotateZ(45deg); }
-} 
-
-#theBulletToggle:checked ~ #theBulletLabel .theBulletLine:nth-child(1){
-    animation : theBulletAnimate1 .5s forwards;
-}
-
-
-#theBulletToggle:checked ~ #theBulletLabel .theBulletLine:nth-child(2){
-    animation : theBulletAnimate2 .5s forwards;
-}
-
-#theBulletToggle:checked ~ #theBulletLabel .theBulletLine:nth-child(3){
-    animation : theBulletAnimate3 .5s forwards;
-}
-
-@keyframes theBulletInitial1{
-    from{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }
-    to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }
-}
-
-@keyframes theBulletInitial2{
-    from{transform-origin: center; transform : translateX(-100%); opacity: 0; }
-    to{transform-origin: center; transform : translateX(0); opacity: 1;}
-}
-
-@keyframes theBulletInitial3{
-    from{transform-origin: center; transform:  translateY(-200%) rotateZ(45deg); }
-    to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }
-}
-
-.theBulletLine:nth-child(1){
-    animation: theBulletInitial1 .5s forwards;
-}
-
-.theBulletLine:nth-child(2){
-    animation: theBulletInitial2 .5s forwards;
-
-}
-
-.theBulletLine:nth-child(3){
-    animation: theBulletInitial3 .5s forwards;
-}  */
-
-
-/***********************************************************************************  plain ************************************************************************/
-
-#theBulletToggle1{
-    position: absolute;
-    visibility: hidden;
-}
-
-#theBulletHamburgerContainer1{
-    width: 300px;
-    height: 300px;
-    background-color: red;
-    position: relative;
+#navBar{
+    grid-template-area: navBar;
+    background-color: #FB7813;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    padding: 0 2% ;
 }
 
-.theBulletLine1{
-    margin-top: 14%;
-    width: 80%;
-    height: 14%;
-    display: flex;
-    background-color: white;
-    position: relative;
+#logoContainer{
+    display : flex;
+}
+#logo{
+    width: 10vw;
+    height: auto;
+    filter: invert(100%);
 }
 
-#theBulletLabel1{
-    height: 80%;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color: deepskyblue;
-    cursor: pointer;
-}
-
-
-
-@keyframes theBulletAnimate11{
-    from{transform-origin: center; transform : rotate(0deg);}
-    to{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }
-}
-
-@keyframes theBulletAnimate21{
-    from{transform-origin: center; transform : translateX(0); opacity: 1;}
-    to{transform-origin: center; transform : translateX(-100%); opacity: 0; }
-}
-
-@keyframes theBulletAnimate31{
-    from{transform-origin: center; transform : rotate(0deg)}
-    to{transform-origin: center; transform : translateY(-200%) rotateZ(45deg); }
-}
-
-#theBulletToggle1:checked ~ #theBulletLabel1 .theBulletLine1:nth-child(1){
-    animation : theBulletAnimate11 .5s forwards;
-}
-
-#theBulletToggle1:checked ~ #theBulletLabel1 .theBulletLine1:nth-child(2){
-    animation : theBulletAnimate21 .5s forwards;
-}
-
-#theBulletToggle1:checked ~ #theBulletLabel1 .theBulletLine1:nth-child(3){
-    animation : theBulletAnimate31 .5s forwards;
-}
-
-@keyframes theBulletInitial11{
-    from{transform-origin: center; transform:  translateY(200%) rotateZ(-45deg); }
-    to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }
-}
-
-@keyframes theBulletInitial21{
-    from{transform-origin: center; transform : translateX(-100%); opacity: 0; }
-    to{transform-origin: center; transform : translateX(0); opacity: 1;}
-}
-
-@keyframes theBulletInitial31{
-    from{transform-origin: center; transform:  translateY(-200%) rotateZ(45deg); }
-    to{transform-origin: center; transform:  translateY(0) rotateZ(0deg); }
-}
-
-.theBulletLine1:nth-child(1){
-    animation: theBulletInitial11 .5s forwards;
-}
-
-.theBulletLine1:nth-child(2){
-    animation: theBulletInitial21 .5s forwards;
-
-}
-
-.theBulletLine1:nth-child(3){
-    animation: theBulletInitial31 .5s forwards;
-
-}
-
-.testdeappend{
-    min-width: 300px;
-    min-height: 300px;
+.color{
     background-color: fuchsia;
 }
 
+.color2{
+    background-color: gray;
+}
 
 
 
@@ -229,6 +46,79 @@
 
 
 
+
+
+@keyframes roboticAnimate1{
+    0%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ transform-origin: center; transform : translate(0, 200%) rotate(0deg) scale(1); opacity: 1;}
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, 200%) rotate(-45deg) scale(1); opacity: 1;}
+    }
+    
+    @keyframes roboticAnimate2{
+    0%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ transform-origin: undefined; transform : translate(undefined, undefined) rotate(undefineddeg) scale(undefined); opacity: undefined;}
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 0;}
+    }
+    
+    @keyframes roboticAnimate3{
+    0%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ transform-origin: center; transform : translate(0, -200%) rotate(0deg) scale(1); opacity: 1;}
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, -200%) rotate(45deg) scale(1); opacity: 1;}
+    }
+    
+    @keyframes roboticInitial1{
+    0%{ transform-origin: center; transform : translate(0, 200%) rotate(-45deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ transform-origin: center; transform : translate(0, 200%) rotate(0deg) scale(1); opacity: 1;}
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    }
+    
+    @keyframes roboticInitial2{
+    0%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 0;}
+    25%{ }
+    50%{ transform-origin: undefined; transform : translate(undefined, undefined) rotate(undefineddeg) scale(undefined); opacity: undefined;}
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    }
+    
+    @keyframes roboticInitial3{
+    0%{ transform-origin: center; transform : translate(0, -200%) rotate(45deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ transform-origin: center; transform : translate(0, -200%) rotate(0deg) scale(1); opacity: 1;}
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    }
+    
+    #roboticToggle:checked ~ #roboticLabel .roboticLine:nth-child(1){
+    animation : roboticAnimate1 .5s forwards;
+    }
+    
+    #roboticToggle:checked ~ #roboticLabel .roboticLine:nth-child(2){
+    animation : roboticAnimate2 .5s forwards;
+    }
+    
+    #roboticToggle:checked ~ #roboticLabel .roboticLine:nth-child(3){
+    animation : roboticAnimate3 .5s forwards;
+    }
+    
+    .roboticLine:nth-child(1){
+    animation: roboticInitial1 .5s forwards;
+    }
+    
+    .roboticLine:nth-child(2){
+    animation: roboticInitial2 .5s forwards;
+    }
+    
+    .roboticLine:nth-child(3){
+    animation: roboticInitial3 .5s forwards;
+    } */
 
 
 
@@ -309,12 +199,3 @@
 
 
 
-
-    /* ------------------------------------------------------ animation template ----------------------------------------------------- */
-    /* @keyframes roboticAnimate1{
-        0%{ transform-origin: center; transform : translate(X, Y) rotate(Xdeg) scale(X, Y);  opacity: X;}
-        25%{ transform-origin: center; transform : translate(X, Y) rotate(Xdeg) scale(X, Y);  opacity: X; }
-        50%{ transform-origin: center; transform : translate(X, Y) rotate(Xdeg) scale(X, Y);  opacity: X; }
-        75%{ transform-origin: center; transform : translate(X, Y) rotate(Xdeg) scale(X, Y);  opacity: X; }
-        100%{ transform-origin: center; transform : translate(X, Y) rotate(Xdeg) scale(X, Y);  opacity: X; }
-        } */
