@@ -1,12 +1,5 @@
 
 
-// var Info = {
-//     container : document.getElementById("hamburgerContainer"),
-//     width : Info.container,
-// };
-
-// console.log(Info);
-
 function HamburgerMaker(hamburgerName){
     this.containerToAppend = document.getElementById("mainContainer");
     this.hamburgerName = hamburgerName;
@@ -88,7 +81,6 @@ function HamburgerMaker(hamburgerName){
         el.flexDirection = "column";
         el.cursor = "pointer";
         el.borderRadius = "15px";
-        // console.log(this.label);
     };
 
     this.setCheckBoxStyle = function(){
@@ -106,7 +98,6 @@ function HamburgerMaker(hamburgerName){
         el.backgroundColor = "#FB7813";
         el.position = "relative";
         el.borderRadius = "12px";
-        // console.log(this.line);
         }
     };
 
@@ -230,7 +221,6 @@ function HamburgerMaker(hamburgerName){
         };
 
         this.converCssTagToCopy = function(styleTag){
-            // console.log(styleTag);
             let content = styleTag.outerHTML;
             let parent = document.getElementById("toCopy");
             let br = document.createElement("br");
@@ -247,90 +237,122 @@ function HamburgerMaker(hamburgerName){
 
 ////////////////////////////////////////////// TO DO ANIMATION CONSCTRUCTOR  /////////////////////////////////////////
 
-function AnimationConstructor(complexity, allSequences){
+function AnimationConstructor(typeOfAnimation, complexity, allSequences, secondComplexity, allSecondSequences){
     this.complexity = complexity;
+    this.secondComplexity = secondComplexity;
+
     this.allSequences = allSequences;
-    this.objectToCreate = {};
-    this.objectToReverse = {};
+    this.allSecondSequences = allSecondSequences;
+
+    this.typeOfAnimation = typeOfAnimation;
+
+    let animationToReverse = allSequences;
+    
+    this.animationToCreate = {};
+    this.secondAnimationToCreate = {};
+    this.animationToReverse = {};
+    
+
+
 
 
     
     this.createAnimationObject = function(){
         if(complexity == 2){
-            this.objectToCreate.complexity = 2;
-            this.objectToCreate.line1 = {zero : allSequences[0], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[1], };
-            this.objectToCreate.line2 = {zero : allSequences[2], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[3], };
-            this.objectToCreate.line3 = {zero : allSequences[4], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[5], };
-            console.log(this.objectToCreate);
-            console.log("og");
-
-            return this.objectToCreate
+            this.animationToCreate.complexity = 2;
+            this.animationToCreate.line1 = {zero : allSequences[0], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[1], };
+            this.animationToCreate.line2 = {zero : allSequences[2], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[3], };
+            this.animationToCreate.line3 = {zero : allSequences[4], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSequences[5], };
+            return this.animationToCreate
         }
         if(complexity == 3){
-            this.objectToCreate.complexity = 3;
-            this.objectToCreate.line1 = {zero : allSequences[0], twentyFive : [], fifty : allSequences[1], seventyFive : [], oneHundred : allSequences[2], };
-            this.objectToCreate.line2 = {zero : allSequences[3], twentyFive : [], fifty : allSequences[4], seventyFive : [], oneHundred : allSequences[5], };
-            this.objectToCreate.line3 = {zero : allSequences[6], twentyFive : [], fifty : allSequences[7], seventyFive : [], oneHundred : allSequences[8], };
-            return this.objectToCreate
+            this.animationToCreate.complexity = 3;
+            this.animationToCreate.line1 = {zero : allSequences[0], twentyFive : [], fifty : allSequences[1], seventyFive : [], oneHundred : allSequences[2], };
+            this.animationToCreate.line2 = {zero : allSequences[3], twentyFive : [], fifty : allSequences[4], seventyFive : [], oneHundred : allSequences[5], };
+            this.animationToCreate.line3 = {zero : allSequences[6], twentyFive : [], fifty : allSequences[7], seventyFive : [], oneHundred : allSequences[8], };
+            return this.animationToCreate
         }
         if(complexity == 5){
-            this.objectToCreate.complexity = 5;
-            this.objectToCreate.line1 = {zero : allSequences[0], twentyFive : allSequences[1], fifty : allSequences[2], seventyFive : allSequences[3], oneHundred : allSequences[4], };
-            this.objectToCreate.line2 = {zero : allSequences[5], twentyFive : allSequences[6], fifty : allSequences[7], seventyFive : allSequences[8], oneHundred : allSequences[9], };
-            this.objectToCreate.line3 = {zero : allSequences[10], twentyFive : allSequences[11], fifty : allSequences[12], seventyFive : allSequences[13], oneHundred : allSequences[14], };
-            return this.objectToCreate
+            this.animationToCreate.complexity = 5;
+            this.animationToCreate.line1 = {zero : allSequences[0], twentyFive : allSequences[1], fifty : allSequences[2], seventyFive : allSequences[3], oneHundred : allSequences[4], };
+            this.animationToCreate.line2 = {zero : allSequences[5], twentyFive : allSequences[6], fifty : allSequences[7], seventyFive : allSequences[8], oneHundred : allSequences[9], };
+            this.animationToCreate.line3 = {zero : allSequences[10], twentyFive : allSequences[11], fifty : allSequences[12], seventyFive : allSequences[13], oneHundred : allSequences[14], };
+            return this.animationToCreate
         }
 
-    }
+    };
 
-    // this.reverseAnimationObject = function(animationToReverse){
-    //     console.log(animationToReverse);
-    //     if(complexity == 2){
-    //         this.objectToReverse.complexity = 2;
-    //         this.objectToReverse.line1 = {zero : animationToReverse[1], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[0], };
-    //         this.objectToReverse.line2 = {zero : animationToReverse[3], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[2], };
-    //         this.objectToReverse.line3 = {zero : animationToReverse[5], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[4], };
-    //         console.log(this.objectToReverse);
-    //         return this.objectToReverse
-    //     }
-    //     if(complexity == 3){
-    //         this.objectToReverse.complexity = 2;
-    //         this.objectToReverse.line1 = {zero : animationToReverse[2], twentyFive : [], fifty : animationToReverse[1], seventyFive : [], oneHundred : animationToReverse[0], };
-    //         this.objectToReverse.line2 = {zero : animationToReverse[5], twentyFive : [], fifty : animationToReverse[4], seventyFive : [], oneHundred : animationToReverse[3], };
-    //         this.objectToReverse.line3 = {zero : animationToReverse[8], twentyFive : [], fifty : animationToReverse[7], seventyFive : [], oneHundred : animationToReverse[6], };
-    //         return this.objectToReverse
-    //     }
-    //     // if(complexity == 5){
-    //     //     this.objectToReverse.complexity = 2;
-    //     //     this.objectToReverse.line1 = {zero : allSequences[0], twentyFive : allSequences[1], fifty : allSequences[2], seventyFive : allSequences[3], oneHundred : allSequences[4], };
-    //     //     this.objectToReverse.line2 = {zero : allSequences[5], twentyFive : allSequences[6], fifty : allSequences[7], seventyFive : allSequences[8], oneHundred : allSequences[9], };
-    //     //     this.objectToReverse.line3 = {zero : allSequences[10], twentyFive : allSequences[11], fifty : allSequences[12], seventyFive : allSequences[13], oneHundred : allSequences[14], };
-    //     //     this.reverseAnimationObject(this.complexity, this.objectToCreate);
-    //     // }
-    // }
+    this.createSecondAnimationObject = function(){
+        if(secondComplexity == 2){
+            this.secondAnimationToCreate.complexity = 2;
+            this.secondAnimationToCreate.line1 = {zero : allSecondSequences[0], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSecondSequences[1], };
+            this.secondAnimationToCreate.line2 = {zero : allSecondSequences[2], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSecondSequences[3], };
+            this.secondAnimationToCreate.line3 = {zero : allSecondSequences[4], twentyFive : [], fifty : [], seventyFive : [], oneHundred : allSecondSequences[5], };
+            return this.secondAnimationToCreate
+        }
+        if(secondComplexity == 3){
+            this.secondAnimationToCreate.complexity = 3;
+            this.secondAnimationToCreate.line1 = {zero : allSecondSequences[0], twentyFive : [], fifty : allSecondSequences[1], seventyFive : [], oneHundred : allSecondSequences[2], };
+            this.secondAnimationToCreate.line2 = {zero : allSecondSequences[3], twentyFive : [], fifty : allSecondSequences[4], seventyFive : [], oneHundred : allSecondSequences[5], };
+            this.secondAnimationToCreate.line3 = {zero : allSecondSequences[6], twentyFive : [], fifty : allSecondSequences[7], seventyFive : [], oneHundred : allSecondSequences[8], };
+            return this.secondAnimationToCreate
+        }
+        if(secondComplexity == 5){
+            this.secondAnimationToCreate.complexity = 5;
+            this.secondAnimationToCreate.line1 = {zero : allSecondSequences[0], twentyFive : allSecondSequences[1], fifty : allSecondSequences[2], seventyFive : allSecondSequences[3], oneHundred : allSecondSequences[4], };
+            this.secondAnimationToCreate.line2 = {zero : allSecondSequences[5], twentyFive : allSecondSequences[6], fifty : allSecondSequences[7], seventyFive : allSecondSequences[8], oneHundred : allSecondSequences[9], };
+            this.secondAnimationToCreate.line3 = {zero : allSecondSequences[10], twentyFive : allSecondSequences[11], fifty : allSecondSequences[12], seventyFive : allSecondSequences[13], oneHundred : allSecondSequences[14], };
+            return this.secondAnimationToCreate
+        }
+
+    };
+
+    this.reverseAnimationObject = function(){
+
+        
+        
+        if(complexity == 2){
+            this.animationToReverse.complexity = 2;
+            this.animationToReverse.line1 = {zero : animationToReverse[1], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[0], };
+            this.animationToReverse.line2 = {zero : animationToReverse[3], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[2], };
+            this.animationToReverse.line3 = {zero : animationToReverse[5], twentyFive : [], fifty : [], seventyFive : [], oneHundred : animationToReverse[4], };
+            return this.animationToReverse
+        }
+        if(complexity == 3){
+            this.animationToReverse.complexity = 3;
+            this.animationToReverse.line1 = {zero : animationToReverse[2], twentyFive : [], fifty : animationToReverse[1], seventyFive : [], oneHundred : animationToReverse[0], };
+            this.animationToReverse.line2 = {zero : animationToReverse[5], twentyFive : [], fifty : animationToReverse[4], seventyFive : [], oneHundred : animationToReverse[3], };
+            this.animationToReverse.line3 = {zero : animationToReverse[8], twentyFive : [], fifty : animationToReverse[7], seventyFive : [], oneHundred : animationToReverse[6], };
+            return this.animationToReverse
+        }
+        if(complexity == 5){
+            this.animationToReverse.complexity = 5;
+            this.animationToCreate.line1 = {zero : allSequences[4], twentyFive : allSequences[3], fifty : allSequences[2], seventyFive : allSequences[1], oneHundred : allSequences[0], };
+            this.animationToCreate.line2 = {zero : allSequences[9], twentyFive : allSequences[8], fifty : allSequences[7], seventyFive : allSequences[6], oneHundred : allSequences[5], };
+            this.animationToCreate.line3 = {zero : allSequences[14], twentyFive : allSequences[13], fifty : allSequences[12], seventyFive : allSequences[11], oneHundred : allSequences[10], };
+            return this.animationToReverse
+        }
+
+    };
+
+    if(this.typeOfAnimation == "mirror"){
+        this.createAnimationObject();
+        this.reverseAnimationObject();
+    } 
+    if(this.typeOfAnimation == "different"){
+        console.log(this.secondAnimationToCreate);
+        this.createAnimationObject();
+        this.createSecondAnimationObject();
+    }
+   
 }
 
 
 
-let theBulletAnimationTemplate = new AnimationConstructor(
-    2,
-    [
-    ["center", "0", "0", "0", "1", "1"], 
-    ["center", "0", "200%", "-45", "1", "1"],
-    ["center", "0", "0", "0", "1", "1"], 
-    ["center", "-100%", "0", "0", "1", "0"],
-    ["center", "0", "0", "0", "1", "1"], 
-    ["center", "0", "-200%", "45", "1", "1"],
-    ]
-);
 
 
- let theBulletAnimateValues = theBulletAnimationTemplate.createAnimationObject();
-//  console.log(theBulletAnimateValues);
-//  let theBulletInitialValues = theBulletAnimationTemplate.reverseAnimationObject(theBulletAnimateValues);                              RENDUE LA
  
 
-////////////////////////////////////////////// TO DO ANIMATION CONSCTRUCTOR  /////////////////////////////////////////
 
  
 let theBullet = new HamburgerMaker("theBullet");
@@ -391,9 +413,26 @@ theBullet.generateEmbededHtml();
 //     }
 // };
 
+let theBulletAnimationTemplate = new AnimationConstructor(
+    "mirror",
+    2,
+    [
+    ["center", "0", "0", "0", "1", "1"], 
+    ["center", "0", "200%", "-45", "1", "1"],
+    ["center", "0", "0", "0", "1", "1"], 
+    ["center", "-100%", "0", "0", "1", "0"],
+    ["center", "0", "0", "0", "1", "1"], 
+    ["center", "0", "-200%", "45", "1", "1"],
+    ]
+);
+
+
+ let theBulletAnimateValues = theBulletAnimationTemplate.animationToCreate;
+ let theBulletInitialValues = theBulletAnimationTemplate.animationToReverse;
+
 
 theBullet.generateKeyframes("Animate", theBulletAnimateValues);
-// theBullet.generateKeyframes("Initial", theBulletInitialValues);                                     RENDU LA
+theBullet.generateKeyframes("Initial", theBulletInitialValues);
 
 theBullet.checkBoxChecked("1", "Animate");
 theBullet.checkBoxChecked("2", "Animate");
@@ -406,7 +445,7 @@ theBullet.checkBoxChecked("3", "Initial");
 theBullet.createStyleTagAndFill();
 
 
-/**************************************************************************************************************************slide Up */
+/**************************************************************************************************************************ROBOTIC */
 
 
 let robotic = new HamburgerMaker("robotic");
@@ -419,61 +458,30 @@ robotic.generateEmbededHtml();
 
 
 
+let roboticAnimationTemplate = new AnimationConstructor(
+    "mirror",
+    3,
+    [
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "200%", "0", "1", "1"],
+        ["center", "0", "200%", "-45", "1", "1"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "0.5"],
+        ["center", "0", "0", "0", "1", "0"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "-200%", "0", "1", "1"],
+        ["center", "0", "-200%", "45", "1", "1"],
+    ]
+);
 
 
-
-let roboticAnimationValues = {
-    complexity : 3,
-    line1 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "200%", "0", "1", "1"],
-        seventyFive: [],
-        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0", "0", "1", "0"],
-    },
-    line3 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "-200%", "0", "1", "1"],
-        seventyFive: [],
-        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
-    }
-};
-
-let roboticInitialValues = {
-    complexity : 3,
-    line1 : {
-        zero: ["center", "0", "200%", "-45", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "200%", "0", "1", "1"],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero:  ["center", "0", "0", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line3 : {
-        zero:  ["center", "0", "-200%", "45", "1", "1"],
-        twentyFive: [],
-        fifty: ["center", "0", "-200%", "0", "1", "1"],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    }
-};
+ let roboticAnimateValues = roboticAnimationTemplate.animationToCreate;
+ let roboticInitialValues = roboticAnimationTemplate.animationToReverse;
 
 
-robotic.generateKeyframes("Animate", roboticAnimationValues);
+robotic.generateKeyframes("Animate", roboticAnimateValues);
 robotic.generateKeyframes("Initial", roboticInitialValues);
 
 robotic.checkBoxChecked("1", "Animate");
@@ -500,62 +508,49 @@ slideUp.setLineStyle();
 slideUp.generateEmbededHtml();
 
 
+let slideUpAnimationTemplate = new AnimationConstructor(
+    "different",
+    5,
+    [
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "0", "-400%", "0", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "1"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "0", "-400%", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "0", "-400%", "0", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "1"],
+    ],
+
+    2,
+    [
+        ["center", "0", "-400%", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "0", "-400%", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "0", "-400%", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+    ],
+);
+
+
+ let slideUpAnimateValues = slideUpAnimationTemplate.animationToCreate;
+ let slideUpInitialValues = slideUpAnimationTemplate.secondAnimationToCreate;
 
 
 
-
-let slideUpAnimationValues = {
-    complexity : 5,
-    line1 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "-400%", "0", "1", "0"],
-        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
-        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "-400%", "0", "1", "0"],
-        seventyFive: ["center", "0", "0%", "0", "1", "0"],
-        oneHundred: ["center", "0", "0%", "0", "1", "0"],
-    },
-    line3 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "-400%", "0", "1", "0"],
-        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
-        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
-    }
-};
-
-let slideUpInitialValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["center", "0", "-400%", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "-400%", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line3 : {
-        zero: ["center", "0", "-400%", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    }
-};
-
-
-slideUp.generateKeyframes("Animate", slideUpAnimationValues);
+slideUp.generateKeyframes("Animate", slideUpAnimateValues);
 slideUp.generateKeyframes("Initial", slideUpInitialValues);
 
 slideUp.checkBoxChecked("1", "Animate");
@@ -581,63 +576,48 @@ slideDown.setCheckBoxStyle();
 slideDown.setLineStyle();
 slideDown.generateEmbededHtml();
 
+let slideDownAnimationTemplate = new AnimationConstructor(
+    "different",
+    5,
+    [
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "0", "400%", "0", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "1"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "0", "400%", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "0", "400%", "0", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "1"],
+    ],
+
+    2,
+    [
+        ["center", "0", "400%", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "0", "400%", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "0", "400%", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+    ],
+);
 
 
+ let slideDownAnimateValues = slideDownAnimationTemplate.animationToCreate;
+ let slideDownInitialValues = slideDownAnimationTemplate.secondAnimationToCreate;
 
 
-
-let slideDownAnimationValues = {
-    complexity : 5,
-    line1 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "400%", "0", "1", "0"],
-        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
-        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "400%", "0", "1", "0"],
-        seventyFive: ["center", "0", "0%", "0", "1", "0"],
-        oneHundred: ["center", "0", "0%", "0", "1", "0"],
-    },
-    line3 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "0", "400%", "0", "1", "0"],
-        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
-        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
-    }
-};
-
-let slideDownInitialValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["center", "0", "400%", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "400%", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line3 : {
-        zero: ["center", "0", "400%", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    }
-};
-
-
-slideDown.generateKeyframes("Animate", slideDownAnimationValues);
+slideDown.generateKeyframes("Animate", slideDownAnimateValues);
 slideDown.generateKeyframes("Initial", slideDownInitialValues);
 
 slideDown.checkBoxChecked("1", "Animate");
@@ -663,62 +643,48 @@ slideLeft.setLineStyle();
 slideLeft.generateEmbededHtml();
 
 
+let slideLeftAnimationTemplate = new AnimationConstructor(
+    "different",
+    5,
+    [
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "-200%", "0", "0", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "1"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "-200%", "0", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "-200%", "0", "0", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "1"],
+    ],
+
+    2,
+    [
+        ["center", "-200%", "0", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "-200%", "0", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "-200%", "0", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+    ],
+);
 
 
+ let slideLeftAnimateValues = slideLeftAnimationTemplate.animationToCreate;
+ let slideLeftInitialValues = slideLeftAnimationTemplate.secondAnimationToCreate;
 
 
-let slideLeftAnimationValues = {
-    complexity : 5,
-    line1 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "-200%", "0", "0", "1", "0"],
-        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
-        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "-200%", "0", "0", "1", "0"],
-        seventyFive: ["center", "0", "0%", "0", "1", "0"],
-        oneHundred: ["center", "0", "0%", "0", "1", "0"],
-    },
-    line3 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "-200%", "0", "0", "1", "0"],
-        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
-        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
-    }
-};
-
-let slideLeftInitialValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["center", "-200%", "0", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "-200%", "0", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line3 : {
-        zero: ["center", "-200%", "0", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    }
-};
-
-
-slideLeft.generateKeyframes("Animate", slideLeftAnimationValues);
+slideLeft.generateKeyframes("Animate", slideLeftAnimateValues);
 slideLeft.generateKeyframes("Initial", slideLeftInitialValues);
 
 slideLeft.checkBoxChecked("1", "Animate");
@@ -743,60 +709,47 @@ slideRight.generateEmbededHtml();
 
 
 
+let slideRightAnimationTemplate = new AnimationConstructor(
+    "different",
+    5,
+    [
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "200%", "0", "0", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "0"],
+        ["center", "0", "200%", "-45", "1", "1"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "200%", "0", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+        ["center", "0", "0%", "0", "1", "0"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0", "0", "1", "1"],
+        ["center", "200%", "0", "0", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "0"],
+        ["center", "0", "-200%", "45", "1", "1"],
+    ],
+
+    2,
+    [
+        ["center", "200%", "0", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "200%", "0", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+
+        ["center", "200%", "0", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"],
+    ],
+);
 
 
-let slideRightAnimationValues = {
-    complexity : 5,
-    line1 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "200%", "0", "0", "1", "0"],
-        seventyFive: ["center", "0", "200%", "-45", "1", "0"],
-        oneHundred: ["center", "0", "200%", "-45", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "200%", "0", "0", "1", "0"],
-        seventyFive: ["center", "0", "0%", "0", "1", "0"],
-        oneHundred: ["center", "0", "0%", "0", "1", "0"],
-    },
-    line3 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: ["center", "200%", "0", "0", "1", "0"],
-        seventyFive: ["center", "0", "-200%", "45", "1", "0"],
-        oneHundred: ["center", "0", "-200%", "45", "1", "1"],
-    }
-};
+ let slideRightAnimateValues = slideRightAnimationTemplate.animationToCreate;
+ let slideRightInitialValues = slideRightAnimationTemplate.secondAnimationToCreate;
 
-let slideRightInitialValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["center", "200%", "0", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "200%", "0", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    },
-    line3 : {
-        zero: ["center", "200%", "0", "0", "1", "0"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive:  [],
-        oneHundred: ["center", "0", "0", "0", "1", "1"],
-    }
-};
-
-
-slideRight.generateKeyframes("Animate", slideRightAnimationValues);
+slideRight.generateKeyframes("Animate", slideRightAnimateValues);
 slideRight.generateKeyframes("Initial", slideRightInitialValues);
 
 slideRight.checkBoxChecked("1", "Animate");
@@ -827,59 +780,27 @@ arrowLeft.generateEmbededHtml();
 
 
 
+let arrowLeftAnimationTemplate = new AnimationConstructor(
+    "mirror",
+    2,
+    [
+        ["left", "0", "0", "0", "1", "1"], 
+        ["left", "0", "220%", "-45", "0.7", "1"],
 
-let arrowLeftAnimationValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["left", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["left", "0", "220%", "-45", "0.7", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0%", "0", "1", "1"],
-    },
-    line3 : {
-        zero: ["left", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["left", "0", "-220%", "45", "0.7", "1"],
-    }
-};
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0%", "0", "1", "1"],
 
-let arrowLeftInitialValues = {
-    complexity : 2,
-    line1 : {
-        zero:  ["left", "0", "220%", "-45", "0.7", "1"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["left", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0%", "0", "1", "1"],
-    },
-    line3 : {
-        zero:  ["left", "0", "-220%", "45", "0.7", "1"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["left", "0", "0", "0", "1", "1"],
-    }
-};
+        ["left", "0", "0", "0", "1", "1"], 
+        ["left", "0", "-220%", "45", "0.7", "1"],
+    ]
+);
 
 
-arrowLeft.generateKeyframes("Animate", arrowLeftAnimationValues);
+ let arrowLeftAnimateValues = arrowLeftAnimationTemplate.animationToCreate;
+ let arrowLeftInitialValues = arrowLeftAnimationTemplate.animationToReverse;
+
+
+arrowLeft.generateKeyframes("Animate", arrowLeftAnimateValues);
 arrowLeft.generateKeyframes("Initial", arrowLeftInitialValues);
 
 arrowLeft.checkBoxChecked("1", "Animate");
@@ -895,7 +816,7 @@ arrowLeft.createStyleTagAndFill();
 
 
 
-/******************************************************************************************************* arrow Left ******************************/
+/******************************************************************************************************* arrow Right ******************************/
 
 let arrowRight = new HamburgerMaker("arrowRight");
 arrowRight.buildElements();
@@ -905,63 +826,27 @@ arrowRight.setCheckBoxStyle();
 arrowRight.setLineStyle();
 arrowRight.generateEmbededHtml();
 
+let arrowRightAnimationTemplate = new AnimationConstructor(
+    "mirror",
+    2,
+    [
+        ["right", "0", "0", "0", "1", "1"], 
+        ["right", "0", "220%", "45", "0.7", "1"],
+
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "0%", "0", "1", "1"],
+
+        ["right", "0", "0", "0", "1", "1"], 
+        ["right", "0", "-220%", "-45", "0.7", "1"],
+    ]
+);
 
 
+ let arrowRightAnimateValues = arrowRightAnimationTemplate.animationToCreate;
+ let arrowRightInitialValues = arrowRightAnimationTemplate.animationToReverse;
 
 
-
-let arrowRightAnimationValues = {
-    complexity : 2,
-    line1 : {
-        zero: ["right", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["right", "0", "220%", "45", "0.7", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0%", "0", "1", "1"],
-    },
-    line3 : {
-        zero: ["right", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["right", "0", "-220%", "-45", "0.7", "1"],
-    }
-};
-
-let arrowRightInitialValues = {
-    complexity : 2,
-    line1 : {
-        zero:  ["right", "0", "220%", "45", "0.7", "1"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["right", "0", "0", "0", "1", "1"],
-    },
-    line2 : {
-        zero: ["center", "0", "0", "0", "1", "1"], 
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["center", "0", "0%", "0", "1", "1"],
-    },
-    line3 : {
-        zero:  ["right", "0", "-220%", "-45", "0.7", "1"],
-        twentyFive: [],
-        fifty: [],
-        seventyFive: [],
-        oneHundred: ["right", "0", "0", "0", "1", "1"],
-    }
-};
-
-
-arrowRight.generateKeyframes("Animate", arrowRightAnimationValues);
+arrowRight.generateKeyframes("Animate", arrowRightAnimateValues);
 arrowRight.generateKeyframes("Initial", arrowRightInitialValues);
 
 arrowRight.checkBoxChecked("1", "Animate");
@@ -975,19 +860,3 @@ arrowRight.checkBoxChecked("3", "Initial");
 arrowRight.createStyleTagAndFill();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/************************************************************* TO DO- retirer contenu css si object animation contient rien , animation delay, change style*/
-
-// console.log(roboticAnimationValues.line1.twentyFive.toString().replace(/,/g, ""));
