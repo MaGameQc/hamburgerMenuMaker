@@ -15,6 +15,7 @@ function HamburgerMaker(hamburgerName){
     this.line;
 
     this.generatedKeyframes = "";
+    this.generatedHamburgerStyle = "";
 
     this.buildElements = function(){
         this.container = create("div", "id", this.containerName, this.containerToAppend);
@@ -59,47 +60,108 @@ function HamburgerMaker(hamburgerName){
         }
     };
 
-    this.setContainerStyle = function(){
-        let el = this.container.style; 
-        el.width = "300px";
-        el.height = "300px";
-        el.backgroundColor = "#0D7377";
-        el.position = "relative";
-        el.display = "flex";
-        el.justifyContent = "space-evenly";
-        el.alignItems = "center";
-        el.flexDirection = "column";
+
+
+    this.setStyles = function(){
+        let containerStyle = {
+            name : this.containerName,
+            styles : 
+                [
+                    "width : 300px",
+                    "height: 300px",
+                    "background-color : #0D7377",
+                    "position : relative",
+                    "display: flex",
+                    "justify-content : space-evenly",
+                    "align-items : center",
+                    "flex-direction : column"
+                ]
+        };
+
+        let labelStyle = {
+            name : this.labelName,
+            styles : 
+                [
+                    "width : 80%",
+                    "height : 80%",
+                    "background-color : #F7F7EE",
+                    "display : flex",
+                    "align-items: center",
+                    "flex-direction : column",
+                    "cursor : pointer",
+                    "border-radius : 15px"
+                ]
+        };
+
+        let checkboxStyle = {
+            name : this.checkBoxName,
+            styles : 
+                [
+                    "position : absolute",
+                    "visibility : hidden"
+                ]
+        };
+
+        let lineStyle = {
+            name : this.lineName,
+            styles : 
+                [
+                    "width: 80%",
+                    "height : 14%",
+                    "margin-top : 14%",
+                    "background-color : #FB7813",
+                    "position : relative",
+                    "border-radius : 12px"
+                ]
+        };
+
+        let idOfStyleTag = this.hamburgerName + "hamburgerGeneratedStyle";
+        // PUT ALL OF THE OBJECT WITH STYLES STORED IN ARRAYS TO THEN APPEND THE INFORMATIONS IN THE STYLE TAG
+        this.generatedHamburgerStyle = [containerStyle, labelStyle, checkboxStyle, lineStyle];
+        this.createhamburgerStyles(this.generatedHamburgerStyle, idOfStyleTag);
+
+
+
     };
 
-    this.setLabelStyle = function(){
-        let el = this.label.style; 
-        el.width = "80%";
-        el.height = "80%";
-        el.backgroundColor = "#F7F7EE";
-        el.display = "flex";
-        el.alignItems = "center";
-        el.flexDirection = "column";
-        el.cursor = "pointer";
-        el.borderRadius = "15px";
-    };
+    this.createhamburgerStyles = function(hamburgerStyles, idOfStyleTag){
 
-    this.setCheckBoxStyle = function(){
-        let el = this.checkBox.style;
-        el.position = "absolute";
-        el.visibility = "hidden";
-    };
-
-    this.setLineStyle = function(){
-        for(i = 0; i < 3; i++){
-        let el = document.getElementsByClassName(this.lineName)[i].style; 
-        el.width = "80%";
-        el.height = "14%";
-        el.marginTop = "14%";
-        el.backgroundColor = "#FB7813";
-        el.position = "relative";
-        el.borderRadius = "12px";
+        function createStyleTag(idOfStyleTag){
+            let styleTag = document.createElement("style");
+            let textNode = document.createTextNode("");
+            styleTag.appendChild(textNode);
+            styleTag.setAttribute("id", idOfStyleTag);
+            document.head.appendChild(styleTag);
+            
         }
+
+        createStyleTag(idOfStyleTag);
+        for(i = 0; i < hamburgerStyles.length; i++){
+            let name = hamburgerStyles[i].name;
+            let stylesToApply = hamburgerStyles[i].styles;
+            let style = ""
+            let startOfStyle = "\n#" + name + "{ \n";
+            let endOfStyle = "}\n"
+
+            if(name == this.lineName){
+                startOfStyle = "\n." + name + "{ \n";
+            }
+
+            for(x = 0; x < stylesToApply.length; x++){
+                style += stylesToApply[x] + "; \n";
+            }
+            let join = startOfStyle + style + endOfStyle;
+
+            let addToStyleTag = document.getElementById(idOfStyleTag).innerHTML += join;
+
+    }
+
+    this.converCssTagToCopy(document.getElementById(idOfStyleTag));
+        
     };
+
+
+
 
     this.generateEmbededHtml = function(){
         let parent = document.getElementById("toCopy");
@@ -214,11 +276,14 @@ function HamburgerMaker(hamburgerName){
         this.createStyleTagAndFill = function(){
             let generate = this.generatedKeyframes;
             let styleTag = document.createElement("style");
+            styleTag.setAttribute("id", "generatedStyle");
             let textNode = document.createTextNode(generate);
             styleTag.appendChild(textNode);
             document.head.appendChild(styleTag);
             this.converCssTagToCopy(styleTag);
         };
+
+
 
         this.converCssTagToCopy = function(styleTag){
             let content = styleTag.outerHTML;
@@ -340,7 +405,6 @@ function AnimationConstructor(typeOfAnimation, complexity, allSequences, secondC
         this.reverseAnimationObject();
     } 
     if(this.typeOfAnimation == "different"){
-        console.log(this.secondAnimationToCreate);
         this.createAnimationObject();
         this.createSecondAnimationObject();
     }
@@ -357,61 +421,11 @@ function AnimationConstructor(typeOfAnimation, complexity, allSequences, secondC
  
 let theBullet = new HamburgerMaker("theBullet");
 theBullet.buildElements();
-theBullet.setContainerStyle();
-theBullet.setLabelStyle();
-theBullet.setCheckBoxStyle();
-theBullet.setLineStyle();
+theBullet.setStyles();
 theBullet.generateEmbededHtml();
 
-// let theBulletAnimationValues = {
-//     complexity : 2,
-//     line1 : {
-//         zero: ["center", "0", "0", "0", "1", "1"], 
-//         twentyFive: [],
-//         fifty: [],
-//         seventyFive: [],
-//         oneHundred: ["center", "0", "200%", "-45", "1", "1"],
-//     },
-//     line2 : {
-//         zero: ["center", "0", "0", "0", "1", "1"], 
-//         twentyFive: [],
-//         fifty: [],
-//         seventyFive: [],
-//         oneHundred: ["center", "-100%", "0", "0", "1", "0"],
-//     },
-//     line3 : {
-//         zero: ["center", "0", "0", "0", "1", "1"], 
-//         twentyFive: [],
-//         fifty: [],
-//         seventyFive: [],
-//         oneHundred: ["center", "0", "-200%", "45", "1", "1"],
-//     }
-// };
 
-// let theBulletInitialValues = {
-//     complexity : 2,
-//     line1 : {
-//         zero: ["center", "0", "200%", "-45", "1", "1"], 
-//         twentyFive: [],
-//         fifty: [],
-//         seventyFive: [],
-//         oneHundred: ["center", "0", "0", "0", "1", "1"],
-//     },
-//     line2 : {
-//         zero:  ["center", "0", "0", "0", "1", "0"],
-//         twentyFive: [],
-//         fifty: [],
-//         seventyFive: [],
-//         oneHundred: ["center", "0", "0", "0", "1", "1"],
-//     },
-//     line3 : {
-//         zero:  ["center", "0", "-200%", "45", "1", "1"],
-//         twentyFive: [],
-//         fifty: [],
-//         seventyFive: [],
-//         oneHundred: ["center", "0", "0", "0", "1", "1"],
-//     }
-// };
+
 
 let theBulletAnimationTemplate = new AnimationConstructor(
     "mirror",
@@ -443,6 +457,9 @@ theBullet.checkBoxChecked("2", "Initial");
 theBullet.checkBoxChecked("3", "Initial");
 
 theBullet.createStyleTagAndFill();
+
+
+
 
 
 /**************************************************************************************************************************ROBOTIC */
