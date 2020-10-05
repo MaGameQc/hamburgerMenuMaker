@@ -8,14 +8,17 @@ function HamburgerMaker(hamburgerName){
     this.forCheckBoxName = hamburgerName + "Toggle";
     this.labelName = hamburgerName + "Label" ;
     this.lineName = hamburgerName + "Line" ;
+    this.styleTagName = this.hamburgerName + "GeneratedStyleTag";
 
     this.container;
     this.checkBox;
     this.label;
     this.line;
 
+
     this.generatedKeyframes = "";
-    this.allElementsStyles = "";
+    this.allElementsStylesObject = "";
+    this.styleTagContent = "";
 
     this.buildElements = function(){
         this.container = create("div", "id", this.containerName, this.containerToAppend);
@@ -58,11 +61,33 @@ function HamburgerMaker(hamburgerName){
             parent.appendChild(element);
             return element
         }
+        this.addListeners();
+    };
+
+    this.addListeners = function(){
+        var self = this;
+        var state = false;
+        document.getElementById(this.labelName).addEventListener("click", function(){
+            if(state == false){
+                self.generateEmbededHtml();
+                self.converCssTagToCopy();
+                state = true;
+            } else {
+                return;
+            }
+        });
     };
 
 
+    this.createStyleTag = function(){
+        let styleTag = document.createElement("style");
+        // let textNode = document.createTextNode("");
+        // styleTag.appendChild(textNode);
+        styleTag.setAttribute("id", this.styleTagName);
+        document.head.appendChild(styleTag);
+    };
 
-    this.setAndCreateStyles = function(){
+    this.setStyles = function(){
         let containerStyle = {
             name : this.containerName,
             styles : 
@@ -114,31 +139,20 @@ function HamburgerMaker(hamburgerName){
                     "border-radius : 12px"
                 ]
         };
-
-        let idOfStyleTag = this.hamburgerName + "hamburgerGeneratedStyle";
+        
+        // let idOfStyleTag = this.hamburgerName + "GeneratedStyle";
         // PUT ALL OF THE OBJECT WITH STYLES STORED IN ARRAYS TO THEN APPEND THE INFORMATIONS IN THE STYLE TAG
-        this.allElementsStyles = [containerStyle, labelStyle, checkboxStyle, lineStyle];
-        this.createhamburgerStyles(this.allElementsStyles, idOfStyleTag);
-
+        this.allElementsStylesObject = [containerStyle, labelStyle, checkboxStyle, lineStyle];
+        
+        this.addStylesToStyleTagContent();
 
 
     };
 
-    this.createhamburgerStyles = function(allElementsStyles, idOfStyleTag){
-
-        function createStyleTag(idOfStyleTag){
-            let styleTag = document.createElement("style");
-            let textNode = document.createTextNode("");
-            styleTag.appendChild(textNode);
-            styleTag.setAttribute("id", idOfStyleTag);
-            document.head.appendChild(styleTag);
-            
-        }
-
-        createStyleTag(idOfStyleTag);
-        for(i = 0; i < allElementsStyles.length; i++){
-            let name = allElementsStyles[i].name;
-            let stylesToApply = allElementsStyles[i].styles;
+    this.addStylesToStyleTagContent = function(){
+        for(i = 0; i < this.allElementsStylesObject.length; i++){
+            let name = this.allElementsStylesObject[i].name;
+            let stylesToApply = this.allElementsStylesObject[i].styles;
             let style = ""
             let startOfStyle = "\n#" + name + "{ \n";
             let endOfStyle = "}\n"
@@ -150,22 +164,15 @@ function HamburgerMaker(hamburgerName){
             for(x = 0; x < stylesToApply.length; x++){
                 style += stylesToApply[x] + "; \n";
             }
-            let join = startOfStyle + style + endOfStyle;
-
-            let addToStyleTag = document.getElementById(idOfStyleTag).innerHTML += join;
-
-    }
-
-    this.converCssTagToCopy(document.getElementById(idOfStyleTag));
-        
+            let content = startOfStyle + style + endOfStyle;
+            this.styleTagContent += content;
+        }
     };
-
-
-
 
     this.generateEmbededHtml = function(){
         let parent = document.getElementById("toCopy");
         let content = this.container.outerHTML;
+        //put a line break between each tag names when text showing in the container
         content = content.replace(/</g, "\n <");
         let child = document.createTextNode(content + "\n" + "\n");
         parent.appendChild(child);
@@ -270,24 +277,19 @@ function HamburgerMaker(hamburgerName){
         };
 
         this.cumulateCss = function(text){
-            this.generatedKeyframes += text;
+            // this.generatedKeyframes += text;
+            this.styleTagContent += text;
         };
 
-
-        this.createStyleTagAndFill = function(){
-            let generate = this.generatedKeyframes;
-            let styleTag = document.createElement("style");
-            styleTag.setAttribute("id", "generatedStyle");
-            let textNode = document.createTextNode(generate);
+        this.fillStyleTag = function(){
+            let textNode = document.createTextNode(this.styleTagContent);
+            let styleTag = document.getElementById(this.styleTagName); 
             styleTag.appendChild(textNode);
-            document.head.appendChild(styleTag);
-            this.converCssTagToCopy(styleTag);
         };
 
-
-
-        this.converCssTagToCopy = function(styleTag){
-            let content = styleTag.outerHTML;
+        this.converCssTagToCopy = function(){
+            let styleTagElement = document.getElementById(this.styleTagName);
+            let content = styleTagElement.outerHTML;
             let parent = document.getElementById("toCopy");
             let br = document.createElement("br");
             let br2 = document.createElement("br");
@@ -422,8 +424,9 @@ function AnimationConstructor(typeOfAnimation, complexity, allSequences, secondC
  
 let theBullet = new HamburgerMaker("theBullet");
 theBullet.buildElements();
-theBullet.generateEmbededHtml();
-theBullet.setAndCreateStyles();
+theBullet.createStyleTag();
+theBullet.setStyles();
+
 
 
 
@@ -433,12 +436,12 @@ let theBulletAnimationTemplate = new AnimationConstructor(
     "mirror",
     2,
     [
-    ["center", "0", "0", "0", "1", "1"], 
-    ["center", "0", "200%", "-45", "1", "1"],
-    ["center", "0", "0", "0", "1", "1"], 
-    ["center", "-100%", "0", "0", "1", "0"],
-    ["center", "0", "0", "0", "1", "1"], 
-    ["center", "0", "-200%", "45", "1", "1"],
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "200%", "-45", "1", "1"],
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "-100%", "0", "0", "1", "0"],
+        ["center", "0", "0", "0", "1", "1"], 
+        ["center", "0", "-200%", "45", "1", "1"],
     ]
 );
 
@@ -458,8 +461,7 @@ theBullet.checkBoxChecked("1", "Initial");
 theBullet.checkBoxChecked("2", "Initial");
 theBullet.checkBoxChecked("3", "Initial");
 
-theBullet.createStyleTagAndFill();
-
+theBullet.fillStyleTag();
 
 
 
@@ -467,14 +469,12 @@ theBullet.createStyleTagAndFill();
 /**************************************************************************************************************************ROBOTIC */
 
 
+
+
 let robotic = new HamburgerMaker("robotic");
 robotic.buildElements();
-robotic.setContainerStyle();
-robotic.setLabelStyle();
-robotic.setCheckBoxStyle();
-robotic.setLineStyle();
-robotic.generateEmbededHtml();
-
+robotic.createStyleTag();
+robotic.setStyles();
 
 
 let roboticAnimationTemplate = new AnimationConstructor(
@@ -511,7 +511,7 @@ robotic.checkBoxChecked("1", "Initial");
 robotic.checkBoxChecked("2", "Initial");
 robotic.checkBoxChecked("3", "Initial");
 
-robotic.createStyleTagAndFill();
+robotic.fillStyleTag();
 
 
 
@@ -520,11 +520,8 @@ robotic.createStyleTagAndFill();
 
 let slideUp = new HamburgerMaker("slideUp");
 slideUp.buildElements();
-slideUp.setContainerStyle();
-slideUp.setLabelStyle();
-slideUp.setCheckBoxStyle();
-slideUp.setLineStyle();
-slideUp.generateEmbededHtml();
+slideUp.createStyleTag();
+slideUp.setStyles();
 
 
 let slideUpAnimationTemplate = new AnimationConstructor(
@@ -580,7 +577,7 @@ slideUp.checkBoxChecked("1", "Initial");
 slideUp.checkBoxChecked("2", "Initial");
 slideUp.checkBoxChecked("3", "Initial");
 
-slideUp.createStyleTagAndFill();
+slideUp.fillStyleTag();
 
 
 
@@ -589,11 +586,8 @@ slideUp.createStyleTagAndFill();
 
 let slideDown = new HamburgerMaker("slideDown");
 slideDown.buildElements();
-slideDown.setContainerStyle();
-slideDown.setLabelStyle();
-slideDown.setCheckBoxStyle();
-slideDown.setLineStyle();
-slideDown.generateEmbededHtml();
+slideDown.createStyleTag();
+slideDown.setStyles();
 
 let slideDownAnimationTemplate = new AnimationConstructor(
     "different",
@@ -647,19 +641,15 @@ slideDown.checkBoxChecked("1", "Initial");
 slideDown.checkBoxChecked("2", "Initial");
 slideDown.checkBoxChecked("3", "Initial");
 
-slideDown.createStyleTagAndFill();
-
+slideDown.fillStyleTag();
 
 
 /******************************************************************************************************* slideLeft ******************************/
 
 let slideLeft = new HamburgerMaker("slideLeft");
 slideLeft.buildElements();
-slideLeft.setContainerStyle();
-slideLeft.setLabelStyle();
-slideLeft.setCheckBoxStyle();
-slideLeft.setLineStyle();
-slideLeft.generateEmbededHtml();
+slideLeft.createStyleTag();
+slideLeft.setStyles();
 
 
 let slideLeftAnimationTemplate = new AnimationConstructor(
@@ -714,16 +704,14 @@ slideLeft.checkBoxChecked("1", "Initial");
 slideLeft.checkBoxChecked("2", "Initial");
 slideLeft.checkBoxChecked("3", "Initial");
 
-slideLeft.createStyleTagAndFill();
+slideLeft.fillStyleTag();
 
 /******************************************************************************************************* slideRight ******************************/
+
 let slideRight = new HamburgerMaker("slideRight");
 slideRight.buildElements();
-slideRight.setContainerStyle();
-slideRight.setLabelStyle();
-slideRight.setCheckBoxStyle();
-slideRight.setLineStyle();
-slideRight.generateEmbededHtml();
+slideRight.createStyleTag();
+slideRight.setStyles();
 
 
 
@@ -779,8 +767,7 @@ slideRight.checkBoxChecked("1", "Initial");
 slideRight.checkBoxChecked("2", "Initial");
 slideRight.checkBoxChecked("3", "Initial");
 
-slideRight.createStyleTagAndFill();
-
+slideRight.fillStyleTag();
 
 
 
@@ -789,11 +776,8 @@ slideRight.createStyleTagAndFill();
 /******************************************************************************************************* arrow rigt ******************************/
 let arrowLeft = new HamburgerMaker("arrowLeft");
 arrowLeft.buildElements();
-arrowLeft.setContainerStyle();
-arrowLeft.setLabelStyle();
-arrowLeft.setCheckBoxStyle();
-arrowLeft.setLineStyle();
-arrowLeft.generateEmbededHtml();
+arrowLeft.createStyleTag();
+arrowLeft.setStyles();
 
 
 
@@ -830,8 +814,7 @@ arrowLeft.checkBoxChecked("1", "Initial");
 arrowLeft.checkBoxChecked("2", "Initial");
 arrowLeft.checkBoxChecked("3", "Initial");
 
-arrowLeft.createStyleTagAndFill();
-
+arrowLeft.fillStyleTag();
 
 
 
@@ -839,11 +822,8 @@ arrowLeft.createStyleTagAndFill();
 
 let arrowRight = new HamburgerMaker("arrowRight");
 arrowRight.buildElements();
-arrowRight.setContainerStyle();
-arrowRight.setLabelStyle();
-arrowRight.setCheckBoxStyle();
-arrowRight.setLineStyle();
-arrowRight.generateEmbededHtml();
+arrowRight.createStyleTag();
+arrowRight.setStyles();
 
 let arrowRightAnimationTemplate = new AnimationConstructor(
     "mirror",
@@ -876,6 +856,5 @@ arrowRight.checkBoxChecked("1", "Initial");
 arrowRight.checkBoxChecked("2", "Initial");
 arrowRight.checkBoxChecked("3", "Initial");
 
-arrowRight.createStyleTagAndFill();
-
+arrowRight.fillStyleTag();
 
