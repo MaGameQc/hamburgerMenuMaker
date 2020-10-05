@@ -15,7 +15,7 @@ function HamburgerMaker(hamburgerName){
     this.line;
 
     this.generatedKeyframes = "";
-    this.generatedHamburgerStyle = "";
+    this.allElementsStyles = "";
 
     this.buildElements = function(){
         this.container = create("div", "id", this.containerName, this.containerToAppend);
@@ -62,7 +62,7 @@ function HamburgerMaker(hamburgerName){
 
 
 
-    this.setStyles = function(){
+    this.setAndCreateStyles = function(){
         let containerStyle = {
             name : this.containerName,
             styles : 
@@ -117,14 +117,14 @@ function HamburgerMaker(hamburgerName){
 
         let idOfStyleTag = this.hamburgerName + "hamburgerGeneratedStyle";
         // PUT ALL OF THE OBJECT WITH STYLES STORED IN ARRAYS TO THEN APPEND THE INFORMATIONS IN THE STYLE TAG
-        this.generatedHamburgerStyle = [containerStyle, labelStyle, checkboxStyle, lineStyle];
-        this.createhamburgerStyles(this.generatedHamburgerStyle, idOfStyleTag);
+        this.allElementsStyles = [containerStyle, labelStyle, checkboxStyle, lineStyle];
+        this.createhamburgerStyles(this.allElementsStyles, idOfStyleTag);
 
 
 
     };
 
-    this.createhamburgerStyles = function(hamburgerStyles, idOfStyleTag){
+    this.createhamburgerStyles = function(allElementsStyles, idOfStyleTag){
 
         function createStyleTag(idOfStyleTag){
             let styleTag = document.createElement("style");
@@ -136,9 +136,9 @@ function HamburgerMaker(hamburgerName){
         }
 
         createStyleTag(idOfStyleTag);
-        for(i = 0; i < hamburgerStyles.length; i++){
-            let name = hamburgerStyles[i].name;
-            let stylesToApply = hamburgerStyles[i].styles;
+        for(i = 0; i < allElementsStyles.length; i++){
+            let name = allElementsStyles[i].name;
+            let stylesToApply = allElementsStyles[i].styles;
             let style = ""
             let startOfStyle = "\n#" + name + "{ \n";
             let endOfStyle = "}\n"
@@ -165,8 +165,9 @@ function HamburgerMaker(hamburgerName){
 
     this.generateEmbededHtml = function(){
         let parent = document.getElementById("toCopy");
-        let content = this.container;
-        let child = document.createTextNode(content.outerHTML + "\n" + "\n");
+        let content = this.container.outerHTML;
+        content = content.replace(/</g, "\n <");
+        let child = document.createTextNode(content + "\n" + "\n");
         parent.appendChild(child);
     };
 
@@ -292,7 +293,7 @@ function HamburgerMaker(hamburgerName){
             let br2 = document.createElement("br");
             parent.appendChild(br);
             parent.appendChild(br2);
-            parent.textContent += content;
+            parent.textContent += content + "\n";
         }
 
 
@@ -421,11 +422,12 @@ function AnimationConstructor(typeOfAnimation, complexity, allSequences, secondC
  
 let theBullet = new HamburgerMaker("theBullet");
 theBullet.buildElements();
-theBullet.setStyles();
 theBullet.generateEmbededHtml();
+theBullet.setAndCreateStyles();
 
 
 
+///////////////////////////////////////////////TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO INTÉGRER LE ANIMATION CONSTRUCTOR AU HAMBURGER MAKER
 
 let theBulletAnimationTemplate = new AnimationConstructor(
     "mirror",
