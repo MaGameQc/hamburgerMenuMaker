@@ -2,6 +2,14 @@ html{
     font-size: 16px;
 }
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+        letter-spacing: 0.1rem;
+}
+
 
 
 #main{
@@ -22,11 +30,90 @@ html{
 
 #navBar{
     grid-area: navBar;
+    background-color: #323643;
+    display: grid;
+    grid-template-areas: 
+    "hamburgerSection"
+    "menuContainer"
+    "logoContainer"
+    ;
+    grid-template-rows: 5rem auto 5rem;
 }
+
+#hamburgerSection{
+    grid-area: hamburgerSection;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+}
+
+/* hamburger css and animation at the bottom */ 
+
+#menuContainer{
+    grid-area: menuContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+    font-size: 2rem;
+    color : white;
+}
+a:hover{
+    -webkit-text-stroke: 0.5px white;
+    color: #FB7813;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0.5rem;
+
+}
+li{
+    margin: 4rem 0 ;
+}
+
+#logoContainer{
+    grid-area: logoContainer;
+    display: flex;
+    align-items: center;
+    background-color: #606470;
+    padding: 0.5rem;
+}
+
+#logo{
+    filter: invert(100%);
+    width: 4rem;
+    height: 4rem;
+}
+
+#brandName{
+    align-self: center;
+    color: white;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+}
+
+
+
+/*********************************************************************************************** HEADER ***************************************************** */
 
 #header{
     grid-area: header;
+    background-color: #E5E5E5;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+
 }
+
+/*********************************************************************************************** ICONS CONTAINER ***************************************************** */
+
 
 #iconsContainer{
     grid-area: iconsContainer;
@@ -37,9 +124,156 @@ html{
 }
 
 .color{
-    background: coral;
+    background: white;
+    border: black solid 1px; 
 }
 
 .color2{
     background: grey;
+    border: black solid 1px;
 }
+
+/* *********************************************************** show animation hamburger menu ******************************************** */
+
+#showAnimationHamburgerContainer{
+    width : 5rem;
+    height: 5rem;
+    position : relative;
+    display: flex;
+    justify-content : space-evenly;
+    align-items : center;
+    flex-direction : column;
+    }
+    
+    #showAnimationLabel{
+    width : 100%;
+    height : 100%;
+    background-color : #F7F7EE;
+    border : solid #323643 2px;
+    display : flex;
+    align-items: center;
+    flex-direction : column;
+    border-radius : 15px;
+    }
+    
+    #showAnimationToggle{
+    position : absolute;
+    visibility : hidden;
+    }
+    
+    .showAnimationLine{
+    width: 80%;
+    height : 14%;
+    margin-top : 14%;
+    background-color : #FB7813;
+    position : relative;
+    border-radius : 12px;
+    }
+
+/* *********************************************************** main hamburger menu ******************************************** */
+#mainleftArrowHamburgerContainer{
+    width : 4rem;
+    height: 4rem;
+    position : relative;
+    display: flex;
+    justify-content : space-evenly;
+    align-items : center;
+    flex-direction : column;
+    }
+    
+    #mainleftArrowLabel{
+    width : 100%;
+    height : 100%;
+    background-color : #F7F7EE;
+    display : flex;
+    align-items: center;
+    flex-direction : column;
+    cursor : pointer;
+    border-radius : 15px;
+    }
+    
+    #mainleftArrowToggle{
+    position : absolute;
+    visibility : hidden;
+    }
+    
+    .mainleftArrowLine{
+    width: 80%;
+    height : 14%;
+    margin-top : 14%;
+    background-color : #FB7813;
+    position : relative;
+    border-radius : 12px;
+    }
+    
+    @keyframes mainleftArrowAnimate1{
+    0%{ transform-origin: left; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ }
+    75%{ }
+    100%{ transform-origin: left; transform : translate(0, 220%) rotate(-45deg) scale(0.7); opacity: 1;}
+    }
+    
+    @keyframes mainleftArrowAnimate2{
+    0%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ }
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, 0%) rotate(0deg) scale(1); opacity: 1;}
+    }
+    
+    @keyframes mainleftArrowAnimate3{
+    0%{ transform-origin: left; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ }
+    75%{ }
+    100%{ transform-origin: left; transform : translate(0, -220%) rotate(45deg) scale(0.7); opacity: 1;}
+    }
+    
+    @keyframes mainleftArrowInitial1{
+    0%{ transform-origin: left; transform : translate(0, 220%) rotate(-45deg) scale(0.7); opacity: 1;}
+    25%{ }
+    50%{ }
+    75%{ }
+    100%{ transform-origin: left; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    }
+    
+    @keyframes mainleftArrowInitial2{
+    0%{ transform-origin: center; transform : translate(0, 0%) rotate(0deg) scale(1); opacity: 1;}
+    25%{ }
+    50%{ }
+    75%{ }
+    100%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    }
+    
+    @keyframes mainleftArrowInitial3{
+    0%{ transform-origin: left; transform : translate(0, -220%) rotate(45deg) scale(0.7); opacity: 1;}
+    25%{ }
+    50%{ }
+    75%{ }
+    100%{ transform-origin: left; transform : translate(0, 0) rotate(0deg) scale(1); opacity: 1;}
+    }
+    
+    #mainleftArrowToggle:checked ~ #mainleftArrowLabel .mainleftArrowLine:nth-child(1){
+    animation : mainleftArrowAnimate1 .5s forwards;
+    }
+    
+    #mainleftArrowToggle:checked ~ #mainleftArrowLabel .mainleftArrowLine:nth-child(2){
+    animation : mainleftArrowAnimate2 .5s forwards;
+    }
+    
+    #mainleftArrowToggle:checked ~ #mainleftArrowLabel .mainleftArrowLine:nth-child(3){
+    animation : mainleftArrowAnimate3 .5s forwards;
+    }
+    
+    .mainleftArrowLine:nth-child(1){
+    animation: mainleftArrowInitial1 .5s forwards;
+    }
+    
+    .mainleftArrowLine:nth-child(2){
+    animation: mainleftArrowInitial2 .5s forwards;
+    }
+    
+    .mainleftArrowLine:nth-child(3){
+    animation: mainleftArrowInitial3 .5s forwards;
+    }
