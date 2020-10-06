@@ -23,8 +23,8 @@ html{
     "navBar codeContainer"
     ;
     margin: 0;
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: 10rem auto auto;
+    grid-template-columns: auto 5fr;
+    grid-template-rows: repeat(minmax(10rem, 20rem)) auto auto;
 
 }
 
@@ -33,32 +33,44 @@ html{
     background-color: #323643;
     display: grid;
     grid-template-areas: 
-    "hamburgerSection"
-    "menuContainer"
-    "logoContainer"
+    "hamburgerSection menuContainer"
+    "empty menuContainer"
+    "logoContainer brandContainer"
     ;
+    max-height: 100vh;
+    
     grid-template-rows: 5rem auto 5rem;
+    grid-template-columns: 5rem repeat(minmax(0px, 30rem));
 }
 
 #hamburgerSection{
     grid-area: hamburgerSection;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     padding: 0.5rem;
+}
+
+
+#empty{
+    grid-area: empty;
 }
 
 /* hamburger css and animation at the bottom */ 
 
 #menuContainer{
     grid-area: menuContainer;
-    display: flex;
+    /* display:none; */
+    display : flex;
     flex-direction: column;
     justify-content: center;
+    width: 0rem;
+    opacity: 0;
+
 }
 
 a{
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color : white;
 }
 a:hover{
@@ -69,7 +81,6 @@ a:hover{
 ul{
     list-style-type: none;
     padding: 0.5rem;
-
 }
 li{
     margin: 4rem 0 ;
@@ -80,7 +91,6 @@ li{
     display: flex;
     align-items: center;
     background-color: #606470;
-    padding: 0.5rem;
 }
 
 #logo{
@@ -89,12 +99,47 @@ li{
     height: 4rem;
 }
 
+#brandContainer{
+    grid-area: brandContainer;
+    /* display:none; */
+    display : flex;
+    align-items: center;
+    background-color: #606470;
+    width: 0rem;
+    opacity: 0;
+}
+
 #brandName{
     align-self: center;
     color: white;
     padding: 0;
     margin: 0;
     font-size: 1rem;
+}
+
+
+.closeMenu{
+    display : flex !important;
+    animation: closeMenu .5s linear forwards;
+}
+
+.openMenu{
+    display : flex !important;
+    animation: openMenu .5s linear forwards;
+    /* display: none !important; */
+}
+
+@keyframes closeMenu{
+    0%{ width: 25rem;  opacity : 1;}
+    50%{width: 10rem;  opacity: 0; }
+    100%{width: 0rem;  opacity: 0; display: none !important; padding: 0;}
+    
+}
+
+@keyframes openMenu{
+    0%{ width: 0rem;  opacity: 0;}
+    50%{width: 10rem;  opacity: 0; }
+    100%{width: 25rem;  opacity : 1;}
 }
 
 
@@ -107,6 +152,7 @@ li{
     display : flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: space-between;
     padding: 0.5em;
 
@@ -117,7 +163,51 @@ li{
 
 #iconsContainer{
     grid-area: iconsContainer;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
+
+.cardContainer{
+    margin: 2rem;
+    width: 20rem;
+    height: 20rem;
+    background-color: #606470;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.animationCardName{
+    font-size: 2rem;
+    color: white;
+}
+
+.iconToTestContainer{
+    width: 5rem;
+    height: 5rem;
+    background-color: white;
+}
+
+.getCodeBtn{
+    width : 10rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    background-color: white;
+    color: #323643;
+    border-radius: 12px;
+    border: none;
+    outline: none; 
+    cursor: pointer;
+}
+
+.getCodeBtn:hover{
+    color: #FB7813;
+}
+/*********************************************************************************************** ICONS CONTAINER ***************************************************** */
+
 
 #codeContainer{
     grid-area: codeContainer;

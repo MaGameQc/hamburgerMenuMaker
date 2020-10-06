@@ -14,6 +14,9 @@
 
     
 <section id="navBar" class="color">
+    <!-- <div id="emptyHamburgerSection">
+
+    </div> -->
     <div id="hamburgerSection">
         <div id="mainleftArrowHamburgerContainer">
             <input id="mainleftArrowToggle" type="checkbox">
@@ -27,6 +30,11 @@
             </label>
         </div>
     </div>
+
+    <div id="empty">
+
+    </div>
+
     <div id="menuContainer">
         <ul>
             <li>
@@ -40,9 +48,13 @@
             </li>
         </ul>
     </div>
+    
+
     <div id="logoContainer">
         <img id="logo" src="image/logo/logo.svg" alt="">
-        <p id="brandName">HamburgerIconMaker</p>
+    </div>
+    <div id="brandContainer">
+        <p id="brandName">BurgerMaker.ca</p>
     </div>
 </section>
 
@@ -68,6 +80,16 @@
 
 <div id="iconsContainer" class="color">
 
+    <!-- <div class="cardContainer">
+        <p class="animationCardName">The Bullet</p>
+
+        <div class="iconToTestContainer"></div>
+
+        <button class="getCodeBtn">Get Code</button>
+    </div> -->
+
+
+
 </div>
 
 <div id="codeContainer" class="color2">
@@ -78,7 +100,51 @@
 
 
 
+<script>
 
+    var mainHamburgerIcon = {
+        state : true,
+        addListenners : function(){
+            document.getElementById("mainleftArrowLabel").addEventListener("click", function(){
+                if(mainHamburgerIcon.state == false){
+                    mainHamburgerIcon.state = true;
+                    mainHamburgerIcon.hide();
+                } else{
+                    mainHamburgerIcon.state = false;
+                    mainHamburgerIcon.show();
+                }
+            })
+        },
+
+        hide : function(){
+            document.querySelector("#menuContainer").classList.remove("openMenu");
+            document.querySelector("#brandContainer").classList.remove("openMenu");
+
+            document.querySelector("#menuContainer").classList.add("closeMenu");
+            document.querySelector("#brandContainer").classList.add("closeMenu");
+            
+
+            // document.querySelector("#hamburgerSection").classList.add("animateMenu");
+
+            
+
+        },
+        show : function(){
+
+            document.querySelector("#menuContainer").classList.remove("closeMenu");
+            document.querySelector("#brandContainer").classList.remove("closeMenu");
+
+            document.querySelector("#menuContainer").classList.add("openMenu");
+            document.querySelector("#brandContainer").classList.add("openMenu");
+            
+            // document.querySelector("#hamburgerSection").classList.remove("animateMenu");
+
+
+        }
+    }
+    mainHamburgerIcon.addListenners();
+
+</script>
     
    
 
@@ -105,7 +171,7 @@
 
 
 
-
-    <script src="script.js"></script> -->
+-->
+    <script src="script.js"></script> 
 </body>
 </html>

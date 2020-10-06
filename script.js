@@ -1,19 +1,34 @@
 
 
+
+
+
 function HamburgerMaker(hamburgerName){
-    this.containerToAppend = document.getElementById("mainContainer");
+    this.containerToAppend = document.getElementById("iconsContainer");
     this.hamburgerName = hamburgerName;
     this.containerName = hamburgerName + "HamburgerContainer" ;
     this.checkBoxName = hamburgerName + "Toggle";
     this.forCheckBoxName = hamburgerName + "Toggle";
     this.labelName = hamburgerName + "Label" ;
     this.lineName = hamburgerName + "Line" ;
+
     this.styleTagName = this.hamburgerName + "GeneratedStyleTag";
+
+    this.cardMainParent = document.getElementById("iconsContainer");
+    this.cardContainerName = hamburgerName + "CardContainer";
+    this.cardContainer;
+    this.animationCard;
+    this.animationCardName = "animationCardName";
+    this.iconToTestContainer;
+    this.getCodeBtn;
+    this.getCodeBtnName = "getCodeBtn";
+
 
     this.container;
     this.checkBox;
     this.label;
     this.line;
+    
 
 
     this.generatedKeyframes = "";
@@ -21,19 +36,43 @@ function HamburgerMaker(hamburgerName){
     this.styleTagContent = "";
 
     this.buildElements = function(){
-        this.container = create("div", "id", this.containerName, this.containerToAppend);
+        
+        this.cardContainer = create("div", "id", this.cardContainerName, this.containerToAppend);
+        
+        setCardContainerStyle(this.cardContainerName);
+        this.animationcard = create("p", "class", this.animationCardName, this.cardContainer);
+
+        this.container = create("div", "id", this.containerName, this.cardContainer);
 
         this.checkBox = create("input", "id", this.checkBoxName, this.container, "checkbox")
 
         this.label = create("label", "id", this.labelName, this.container, "label", this.checkBoxName);
 
+        this.getCodeBtn = create("button", "class", this.getCodeBtnName, this.cardContainer);
+
+        
+        function setCardContainerStyle(el){
+            console.log(el);
+            el = document.getElementById(el).style;
+            el.margin = "2rem";
+            el.width = "20rem";
+            el.height = "20rem";
+            el.backgroundColor = "#606470";
+            el.display = "flex";
+            el.flexDirection = "column";
+            el.alignItems = "center";
+            el.justifyContent = "space-evenly";
+        }
 
         for(i = 0; i < 3; i++){
             create("span", "class", this.lineName, this.label);
         }
 
         function create (tagName, idOrClass, idToGive, parent, type, labelForName) {
+
             let element = document.createElement(tagName);
+            let textNode;
+
             switch (idOrClass) {
                 case "id":
                     element.setAttribute("id", idToGive);
@@ -52,6 +91,14 @@ function HamburgerMaker(hamburgerName){
                     break;
                 case "label":
                     element.htmlFor = labelForName;
+                    break;
+                case "p":
+                    textNode = document.createTextNode(hamburgerName);
+                    element.appendChild(textNode);
+                    break;
+                case "button":
+                    textNode = document.createTextNode("Get Code");
+                    element.appendChild(textNode);
                     break;
 
                 default:
@@ -92,9 +139,9 @@ function HamburgerMaker(hamburgerName){
             name : this.containerName,
             styles : 
                 [
-                    "width : 300px",
-                    "height: 300px",
-                    "background-color : #0D7377",
+                    "width : 5rem",
+                    "height: 5rem",
+                    "background-color : transparent",
                     "position : relative",
                     "display: flex",
                     "justify-content : space-evenly",
@@ -107,8 +154,8 @@ function HamburgerMaker(hamburgerName){
             name : this.labelName,
             styles : 
                 [
-                    "width : 80%",
-                    "height : 80%",
+                    "width : 100%",
+                    "height : 100%",
                     "background-color : #F7F7EE",
                     "display : flex",
                     "align-items: center",
