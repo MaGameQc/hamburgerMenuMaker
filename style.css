@@ -1,5 +1,6 @@
 html{
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 *{
@@ -15,7 +16,8 @@ html{
 #main{
     max-width: 100vw;
     min-height: 100vh;
-    background-color: cornflowerblue;
+    background-color: #f7f7f7;
+    ;
     display: grid;
     grid-template-areas: 
     "navBar header"
@@ -23,12 +25,13 @@ html{
     "navBar codeContainer"
     ;
     margin: 0;
-    grid-template-columns: auto 5fr;
+    grid-template-columns: 5rem 5fr;
     grid-template-rows: repeat(minmax(10rem, 20rem)) auto auto;
 
 }
 
 #navBar{
+    position: fixed;
     grid-area: navBar;
     background-color: #323643;
     display: grid;
@@ -37,7 +40,9 @@ html{
     "empty menuContainer"
     "logoContainer brandContainer"
     ;
-    max-height: 100vh;
+    height: 100vh;
+    z-index: 3;
+
     
     grid-template-rows: 5rem auto 5rem;
     grid-template-columns: 5rem repeat(minmax(0px, 30rem));
@@ -69,13 +74,18 @@ html{
 }
 
 a{
+    
     text-decoration: none;
     font-size: 1.5rem;
     color : white;
+    display: inline-block;
 }
 a:hover{
-    -webkit-text-stroke: 0.5px white;
-    color: #FB7813;
+    /* -webkit-text-stroke: 0.5px white; */
+    /* color: #FB7813; */
+    margin-bottom: -0.5rem;
+    border-bottom: solid #FB7813 0.5rem;
+
 }
 
 ul{
@@ -147,6 +157,8 @@ li{
 /*********************************************************************************************** HEADER ***************************************************** */
 
 #header{
+    width: 100%;
+    margin: auto;
     grid-area: header;
     background-color: #f7f7f7;
     display : flex;
@@ -155,10 +167,11 @@ li{
     text-align: center;
     justify-content: space-between;
     padding: 0.5em;
+    border-bottom: solid #606470 1rem;
 }
 
 #title{
-    color: #323643;
+    color: #FB7813;
 }
 
 /*********************************************************************************************** ICONS CONTAINER ***************************************************** */
@@ -169,13 +182,16 @@ li{
     margin: auto;
     grid-area: iconsContainer;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     background-color: #f7f7f7;
+    padding: 0;
 }
 
-.cardContainer{
+
+
+/* .cardContainer{
     margin: 2rem;
     width: 20rem;
     height: 20rem;
@@ -184,7 +200,7 @@ li{
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-}
+} */
 
 .animationCardName{
     font-size: 2rem;
@@ -197,7 +213,7 @@ li{
     background-color: white;
 }
 
-.getCodeBtn{
+/* .getCodeBtn{
     width : 10rem;
     height: 3rem;
     font-size: 1.3rem;
@@ -207,11 +223,15 @@ li{
     border: none;
     outline: none; 
     cursor: pointer;
+} */
+
+.buttonHovered:hover{
+    color: #FB7813 !important;
 }
 
-.getCodeBtn:hover{
+/* .getCodeBtn:hover{
     color: #FB7813;
-}
+} */
 /*********************************************************************************************** CODE CONTAINER ***************************************************** */
 
 
@@ -219,9 +239,10 @@ li{
     grid-area: codeContainer;
     height:auto;
     width: 80%;
+    margin: auto;
     background-color: #f7f7f7;
     margin: auto;
-    padding: 4rem;
+    padding: 2rem;
 }
 
 #codeGenerator{
@@ -236,29 +257,58 @@ li{
 }
 
 #codeGeneratorTitle{
-    padding: 0.5rem;
+    padding: 1rem;
     color: #f7f7f7;
+    font-size: 1.5rem;
 }
 
 #codeTextArea{
     background-color: #f7f7f7;
     width: 90%;
-    height: 15rem;
+    height: 20rem;
     margin: 0.5rem;
     border-radius: 12px;
+    position: relative;
+}
+
+#textAreaOverlay{
+    position : absolute;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(50, 54, 67, 0.5); 
+    border-radius: 12px;
+    display: none;
+}
+
+.showOverlay{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    animation : showOverlay 2s linear forwards;
+}
+
+@keyframes showOverlay{
+    from{display: flex; opacity : 1;}
+    to{ opacity : 0;}
+}
+
+#textAreaOverlay p{
+    color : #f7f7f7;
+    font-size : 2rem;
 }
 
 #codeContent{
-    border: solid #FB7813 2px;
+    border: solid #FB7813 0.5rem;
     width: 100%;
     height: 100%;
+    font-size: 1.5rem;
     border-radius: 12px;
     resize: none;
     outline: none;
 }
 
 textarea::-webkit-scrollbar {
-    width: 1rem;
+    width: 1.2rem;
     background-color: #ececec; 
     border-radius: 12px;
 }
@@ -280,6 +330,7 @@ textarea::-webkit-scrollbar {
 #copyButton{
     width : 5rem;
     height: 3rem;
+    padding: 0.2rem;
     font-size: 1.3rem;
     background-color: white;
     color: #323643;
@@ -287,6 +338,8 @@ textarea::-webkit-scrollbar {
     border: none;
     outline: none; 
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 #copyButton:hover #copySvg{
@@ -324,8 +377,8 @@ textarea::-webkit-scrollbar {
     #showAnimationLabel{
     width : 100%;
     height : 100%;
-    background-color : transpartent;
-    /* border : solid #323643 2px; */
+    background-color : none;
+    /* border : solid #FB7813 2px; */
     display : flex;
     align-items: center;
     flex-direction : column;
@@ -341,10 +394,89 @@ textarea::-webkit-scrollbar {
     width: 80%;
     height : 14%;
     margin-top : 14%;
-    background-color : #FB7813;
+    background-color: #323643;
     position : relative;
     border-radius : 12px;
     }
+
+
+    .animateLines .showAnimationLine:nth-child(1){
+        animation : autoAnimate1  1s forwards;
+    }
+
+    .animateLines .showAnimationLine:nth-child(2){
+        animation : autoAnimate2  1s forwards;
+    }
+
+    .animateLines .showAnimationLine:nth-child(3){
+        animation : autoAnimate3  1s forwards;
+    }
+
+    .initialLines .showAnimationLine:nth-child(1){
+        animation : autoAnimateInitial1  1s forwards;
+    }
+
+    .initialLines .showAnimationLine:nth-child(2){
+        animation : autoAnimateInitial2  1s forwards;
+    }
+
+    .initialLines .showAnimationLine:nth-child(3){
+        animation : autoAnimateInitial3  1s forwards;
+    }
+ 
+
+
+    /* ANIMATIONS */ 
+
+    
+
+    @keyframes autoAnimate1{
+        0%{ transform-origin: right; transform : translate(0, 0) rotate(0deg) scale(1);  opacity: 1;}
+        25%{ }
+        50%{ }
+        75%{ }
+        100%{ transform-origin: right; transform : translate(-51%, 462%) rotate(135deg) scale(0.7);  opacity: 1;}
+        }
+        
+        @keyframes autoAnimate2{
+        0%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1);  opacity: 1;}
+        25%{ }
+        50%{ }
+        75%{ }
+        100%{ transform-origin: center; transform : translate(0, 0%) rotate(90deg) scale(1);  opacity: 1;}
+        }
+        
+        @keyframes autoAnimate3{
+        0%{ transform-origin: right; transform : translate(0, 0) rotate(0deg) scale(1);  opacity: 1;}
+        25%{ }
+        50%{ }
+        75%{ }
+        100%{ transform-origin: right; transform : translate(-48%, 70%) rotate(45deg) scale(0.7);  opacity: 1;}
+        }
+        
+        @keyframes autoAnimateInitial1{
+        0%{ transform-origin: right; transform : translate(-51%, 462%) rotate(135deg) scale(0.7);  opacity: 1;}
+        25%{ }
+        50%{ }
+        75%{ }
+        100%{ transform-origin: right; transform : translate(0, 0) rotate(0deg) scale(1);  opacity: 1;}
+        }
+        
+        @keyframes autoAnimateInitial2{
+        0%{ transform-origin: center; transform : translate(0, 0%) rotate(90deg) scale(1);  opacity: 1;}
+        25%{ }
+        50%{ }
+        75%{ }
+        100%{ transform-origin: center; transform : translate(0, 0) rotate(0deg) scale(1);  opacity: 1;}
+        }
+        
+        @keyframes autoAnimateInitial3{
+        0%{ transform-origin: right; transform : translate(-48%, 70%) rotate(45deg) scale(0.7);  opacity: 1;}
+        25%{ }
+        50%{ }
+        75%{ }
+        100%{ transform-origin: right; transform : translate(0, 0) rotate(0deg) scale(1);  opacity: 1;}
+        }
 
 /* *********************************************************** main hamburger menu ******************************************** */
 #mainleftArrowHamburgerContainer{
@@ -377,7 +509,7 @@ textarea::-webkit-scrollbar {
     width: 80%;
     height : 14%;
     margin-top : 14%;
-    background-color : #FB7813;
+    background-color : #323643;
     position : relative;
     border-radius : 12px;
     }

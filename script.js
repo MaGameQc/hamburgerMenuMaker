@@ -3,6 +3,56 @@
 
 
 
+    let textAreaCopy = {
+        textarea : document.getElementById("codeContent"),
+        button : document.getElementById("copyButton"),
+        overlay : document.getElementById("textAreaOverlay"),
+        state : false,
+
+        addButtonListenner : function(){
+            this.button.addEventListener("click", function(){
+                textAreaCopy.overlay.classList.add("showOverlay");
+                setTimeout(function(){textAreaCopy.overlay.classList.remove("showOverlay");}, 2000);
+                textAreaCopy.copy();
+            });
+        },
+        copy : function(){
+            this.textarea.select();
+            document.execCommand('copy');
+        },
+    }
+
+    textAreaCopy.addButtonListenner();
+
+let autoAnimatedHamburger = {
+    label: document.getElementById("showAnimationLabel"),
+    animate: "animateLines",
+    initial: "initialLines",
+    state: 0,
+
+    animationInterval: function(){
+        let self = this;
+        let interval = setInterval(function() {
+            self.state ++
+        if(self.state == 1){
+            self.label.classList.remove("initialLines");
+            self.label.classList.add("animateLines");
+            self.state = true;
+        } 
+        else if(self.state == 2){
+            self.label.classList.remove("animateLines");
+            self.label.classList.add("initialLines");
+            self.state = false;
+        } else{
+            self.state = 1;
+        }
+    }, 3000);
+    },
+
+}
+autoAnimatedHamburger.animationInterval();
+
+
 function HamburgerMaker(hamburgerName){
     this.containerToAppend = document.getElementById("iconsContainer");
     this.hamburgerName = hamburgerName;
@@ -21,7 +71,7 @@ function HamburgerMaker(hamburgerName){
     this.animationCardName = "animationCardName";
     this.iconToTestContainer;
     this.getCodeBtn;
-    this.getCodeBtnName = "getCodeBtn";
+    this.getCodeBtnName = hamburgerName + "getCodeBtn";
 
 
     this.container;
@@ -39,7 +89,7 @@ function HamburgerMaker(hamburgerName){
         
         this.cardContainer = create("div", "id", this.cardContainerName, this.containerToAppend);
         
-        setCardContainerStyle(this.cardContainerName);
+        
         this.animationcard = create("p", "class", this.animationCardName, this.cardContainer);
 
         this.container = create("div", "id", this.containerName, this.cardContainer);
@@ -48,20 +98,41 @@ function HamburgerMaker(hamburgerName){
 
         this.label = create("label", "id", this.labelName, this.container, "label", this.checkBoxName);
 
-        this.getCodeBtn = create("button", "class", this.getCodeBtnName, this.cardContainer);
+        this.getCodeBtn = create("button", "id", this.getCodeBtnName, this.cardContainer);
+
+        setCardContainerStyle(this.cardContainerName, this.getCodeBtnName);
+
+        let self = this;
+        document.getElementById(this.getCodeBtnName).addEventListener("click",function(){
+                        document.getElementById("codeContainer").scrollIntoView();
+                        self.generateEmbededHtml();
+                        self.converCssTagToCopy();
+        });
 
         
-        function setCardContainerStyle(el){
-            console.log(el);
+        function setCardContainerStyle(el, button){
+            console.log();
             el = document.getElementById(el).style;
             el.margin = "2rem";
-            el.width = "20rem";
-            el.height = "20rem";
+            el.width = "18rem";
+            el.height = "22rem";
             el.backgroundColor = "#606470";
             el.display = "flex";
             el.flexDirection = "column";
             el.alignItems = "center";
             el.justifyContent = "space-evenly";
+
+            button = document.getElementById(button).style;
+            button.width = "10rem";
+            button.height = "3rem";
+            button.fontSize = "1.3rem";
+            button.backgroundColor = "#f7f7f7";
+            button.color = "#323643";
+            button.borderRadius = "12px";
+            button.border = "none";
+            button.outline = "none";
+            button.cursor = "pointer"
+
         }
 
         for(i = 0; i < 3; i++){
@@ -99,6 +170,8 @@ function HamburgerMaker(hamburgerName){
                 case "button":
                     textNode = document.createTextNode("Voir Code");
                     element.appendChild(textNode);
+                    element.classList.add("buttonHovered");
+
                     break;
 
                 default:
@@ -108,22 +181,22 @@ function HamburgerMaker(hamburgerName){
             parent.appendChild(element);
             return element
         }
-        this.addListeners();
+        // this.addListeners();
     };
 
-    this.addListeners = function(){
-        var self = this;
-        var state = false;
-        document.getElementById(this.labelName).addEventListener("click", function(){
-            if(state == false){
-                self.generateEmbededHtml();
-                self.converCssTagToCopy();
-                state = true;
-            } else {
-                return;
-            }
-        });
-    };
+    // this.addListeners = function(){
+    //     var self = this;
+    //     var state = false;
+    //     document.getElementById(this.labelName).addEventListener("click", function(){
+    //         if(state == false){
+    //             self.generateEmbededHtml();
+    //             self.converCssTagToCopy();
+    //             state = true;
+    //         } else {
+    //             return;
+    //         }
+    //     });
+    // };
 
 
     this.createStyleTag = function(){
@@ -218,6 +291,7 @@ function HamburgerMaker(hamburgerName){
 
     this.generateEmbededHtml = function(){
         let parent = document.getElementById("codeContent");
+        parent.textContent = "";
         let content = this.container.outerHTML;
         //put a line break between each tag names when text showing in the container
         content = content.replace(/</g, "\n <");
@@ -904,4 +978,47 @@ arrowRight.checkBoxChecked("2", "Initial");
 arrowRight.checkBoxChecked("3", "Initial");
 
 arrowRight.fillStyleTag();
+
+/******************************************************************************************************* arrow Down ******************************/
+
+
+// let arrowDown = new HamburgerMaker("arrowDown");
+// arrowDown.buildElements();
+// arrowDown.createStyleTag();
+// arrowDown.setStyles();
+
+// let f= 14 * 33  ;
+// let d = 14 * 5 ;
+// let arrowDownAnimationTemplate = new AnimationConstructor(
+//     "mirror",
+//     2,
+//     [
+//         ["right", "0", "0", "0", "1", "1"], 
+//         ["right", "-51%", "" + f + "%", "135", "0.7", "1"],
+
+//         ["center", "0", "0", "0", "1", "1"], 
+//         ["center", "0", "0%", "90", "1", "1"], 
+
+//         ["right", "0", "0", "0", "1", "1"], 
+//         ["right", "-48%", "" + d + "%", "45", "0.7", "1"],
+//     ]
+// );
+
+
+//  let arrowDownAnimateValues = arrowDownAnimationTemplate.animationToCreate;
+//  let arrowDownInitialValues = arrowDownAnimationTemplate.animationToReverse;
+
+
+// arrowDown.generateKeyframes("Animate", arrowDownAnimateValues);
+// arrowDown.generateKeyframes("Initial", arrowDownInitialValues);
+
+// arrowDown.checkBoxChecked("1", "Animate");
+// arrowDown.checkBoxChecked("2", "Animate");
+// arrowDown.checkBoxChecked("3", "Animate");
+
+// arrowDown.checkBoxChecked("1", "Initial");
+// arrowDown.checkBoxChecked("2", "Initial");
+// arrowDown.checkBoxChecked("3", "Initial");
+
+// arrowDown.fillStyleTag();
 
