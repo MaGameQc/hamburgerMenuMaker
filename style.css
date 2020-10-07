@@ -148,25 +148,31 @@ li{
 
 #header{
     grid-area: header;
-    background-color: #E5E5E5;
+    background-color: #f7f7f7;
     display : flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: space-between;
     padding: 0.5em;
+}
 
+#title{
+    color: #323643;
 }
 
 /*********************************************************************************************** ICONS CONTAINER ***************************************************** */
 
 
 #iconsContainer{
+    width: 80%;
+    margin: auto;
     grid-area: iconsContainer;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    background-color: #f7f7f7;
 }
 
 .cardContainer{
@@ -206,11 +212,91 @@ li{
 .getCodeBtn:hover{
     color: #FB7813;
 }
-/*********************************************************************************************** ICONS CONTAINER ***************************************************** */
+/*********************************************************************************************** CODE CONTAINER ***************************************************** */
 
 
 #codeContainer{
     grid-area: codeContainer;
+    height:auto;
+    width: 80%;
+    background-color: #f7f7f7;
+    margin: auto;
+    padding: 4rem;
+}
+
+#codeGenerator{
+    
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #606470;
+}
+
+#codeGeneratorTitle{
+    padding: 0.5rem;
+    color: #f7f7f7;
+}
+
+#codeTextArea{
+    background-color: #f7f7f7;
+    width: 90%;
+    height: 15rem;
+    margin: 0.5rem;
+    border-radius: 12px;
+}
+
+#codeContent{
+    border: solid #FB7813 2px;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    resize: none;
+    outline: none;
+}
+
+textarea::-webkit-scrollbar {
+    width: 1rem;
+    background-color: #ececec; 
+    border-radius: 12px;
+}
+  
+  textarea::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #FB7813; 
+}
+
+#copyButtonContainer{
+    width: 90%;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+#copyButton{
+    width : 5rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    background-color: white;
+    color: #323643;
+    border-radius: 12px;
+    border: none;
+    outline: none; 
+    cursor: pointer;
+}
+
+#copyButton:hover #copySvg{
+    fill: #323643;
+}
+
+#copySvg{
+    fill: #FB7813;
+    width: 100%;
+    height: 100%;
 }
 
 .color{
@@ -238,8 +324,8 @@ li{
     #showAnimationLabel{
     width : 100%;
     height : 100%;
-    background-color : #F7F7EE;
-    border : solid #323643 2px;
+    background-color : transpartent;
+    /* border : solid #323643 2px; */
     display : flex;
     align-items: center;
     flex-direction : column;

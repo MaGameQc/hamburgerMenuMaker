@@ -97,7 +97,7 @@ function HamburgerMaker(hamburgerName){
                     element.appendChild(textNode);
                     break;
                 case "button":
-                    textNode = document.createTextNode("Get Code");
+                    textNode = document.createTextNode("Voir Code");
                     element.appendChild(textNode);
                     break;
 
@@ -217,7 +217,7 @@ function HamburgerMaker(hamburgerName){
     };
 
     this.generateEmbededHtml = function(){
-        let parent = document.getElementById("toCopy");
+        let parent = document.getElementById("codeContent");
         let content = this.container.outerHTML;
         //put a line break between each tag names when text showing in the container
         content = content.replace(/</g, "\n <");
@@ -337,7 +337,7 @@ function HamburgerMaker(hamburgerName){
         this.converCssTagToCopy = function(){
             let styleTagElement = document.getElementById(this.styleTagName);
             let content = styleTagElement.outerHTML;
-            let parent = document.getElementById("toCopy");
+            let parent = document.getElementById("codeContent");
             let br = document.createElement("br");
             let br2 = document.createElement("br");
             parent.appendChild(br);
