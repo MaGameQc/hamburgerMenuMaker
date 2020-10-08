@@ -12,7 +12,7 @@
         addButtonListenner : function(){
             this.button.addEventListener("click", function(){
                 textAreaCopy.overlay.classList.add("showOverlay");
-                setTimeout(function(){textAreaCopy.overlay.classList.remove("showOverlay");}, 2000);
+                setTimeout(function(){textAreaCopy.overlay.classList.remove("showOverlay");}, 3000);
                 textAreaCopy.copy();
             });
         },
@@ -128,7 +128,7 @@ function HamburgerMaker(hamburgerName){
             button.fontSize = "1.3rem";
             button.backgroundColor = "#f7f7f7";
             button.color = "#323643";
-            button.borderRadius = "12px";
+            button.borderRadius = "0.5rem";
             button.border = "none";
             button.outline = "none";
             button.cursor = "pointer"
@@ -234,7 +234,7 @@ function HamburgerMaker(hamburgerName){
                     "align-items: center",
                     "flex-direction : column",
                     "cursor : pointer",
-                    "border-radius : 15px"
+                    "border-radius : 0.5rem"
                 ]
         };
 
@@ -256,7 +256,7 @@ function HamburgerMaker(hamburgerName){
                     "margin-top : 14%",
                     "background-color : #FB7813",
                     "position : relative",
-                    "border-radius : 12px"
+                    "border-radius : 0.5rem"
                 ]
         };
         

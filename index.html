@@ -38,7 +38,7 @@
     <div id="menuContainer">
         <ul>
             <li>
-                <a href="">Comment Ca Marche ?</a>
+                <a href="#howItWorksContainer">Comment Ca Marche ?</a>
             </li>
             <li>
                 <a href="https://www.tommyaudet.providedspace.com">Mon Portfolio</a>
@@ -77,16 +77,6 @@
 
 <div id="iconsContainer" class="">
 
-    <!-- <div class="cardContainer">
-        <p class="animationCardName">The Bullet</p>
-
-        <div class="iconToTestContainer"></div>
-
-        <button class="getCodeBtn">Get Code</button>
-    </div> -->
-
-
-
 </div>
 
 <div id="codeContainer" class="">
@@ -96,9 +86,7 @@
             <div id="textAreaOverlay" class="">
                 <p>Texte Copié Dans Le Presse Papier !</p>
             </div>
-            <textarea id="codeContent" >
-                
-            </textarea>
+            <textarea id="codeContent" ></textarea>
 
         </div>
         <div id="copyButtonContainer">
@@ -110,11 +98,31 @@
 </div>
 
 
-
+<div id="howItWorksContainer">
+    
+        <h1 id="howItWorksTitle">Comment Ca Marche ?</h1>
+        <br>
+        <p>Bienvenue sur BurgerMaker, un site web vous permettant de d'obtenir le code de l'icône hamburger de votre choix</p>
+        <br>
+        <p>1- pour commencer, cliquez sur les icônes pour trouver une animation qui vous plaît</p>
+        <br>
+        <p>2- Une fois que vous avez trouvé ce que vous cherchez, cliquez sur le bouton voir code</p>
+        <br>
+        <p>3- Un code HTML et CSS à été généré. il ne vous reste plus qu'à cliquer sur le bouton copier en bas du code généré</p>
+        <br>
+        <p>4- Allez dans votre fichier index.html, collez le code à l'endroit de votre choix, préférablement dans une barre de navigation de votre fichier HTML pour le code HTML, et dans votre fichier CSS pour le code CSS</p>
+    
+</div>
 
 
 <script>
-
+window.addEventListener("resize", function(){
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        console.log("600px");
+} else {
+  /* The viewport is greater than 700 pixels wide */
+}
+});
 
 
     

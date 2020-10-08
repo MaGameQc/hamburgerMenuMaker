@@ -23,10 +23,11 @@ html{
     "navBar header"
     "navBar iconsContainer"
     "navBar codeContainer"
+    "navBar howItWorksContainer"
     ;
     margin: 0;
     grid-template-columns: 5rem 5fr;
-    grid-template-rows: repeat(minmax(10rem, 20rem)) auto auto;
+    grid-template-rows: repeat(minmax(10rem, 20rem)) auto auto auto;
 
 }
 
@@ -83,8 +84,8 @@ a{
 a:hover{
     /* -webkit-text-stroke: 0.5px white; */
     /* color: #FB7813; */
-    margin-bottom: -0.5rem;
-    border-bottom: solid #FB7813 0.5rem;
+    margin-bottom: -0.3rem;
+    border-bottom: solid #FB7813 0.3rem;
 
 }
 
@@ -178,7 +179,7 @@ li{
 
 
 #iconsContainer{
-    width: 80%;
+    width: 60%;
     margin: auto;
     grid-area: iconsContainer;
     display: flex;
@@ -238,12 +239,10 @@ li{
 #codeContainer{
     grid-area: codeContainer;
     height:auto;
-    width: 80%;
-    margin: auto;
+    width: 60%;
+    margin: auto auto 2rem auto;
     background-color: #f7f7f7;
-    margin: auto;
-    padding: 2rem;
-}
+    }
 
 #codeGenerator{
     
@@ -257,17 +256,17 @@ li{
 }
 
 #codeGeneratorTitle{
-    padding: 1rem;
+    margin: 1rem;
     color: #f7f7f7;
     font-size: 1.5rem;
 }
 
 #codeTextArea{
     background-color: #f7f7f7;
-    width: 90%;
+    width: 95%;
     height: 20rem;
     margin: 0.5rem;
-    border-radius: 12px;
+    border-radius: 0.5rem;
     position: relative;
 }
 
@@ -275,8 +274,8 @@ li{
     position : absolute;
     width: 100%;
     height: 100%; 
-    background-color: rgba(50, 54, 67, 0.5); 
-    border-radius: 12px;
+    background-color: rgba(50, 54, 67, 0.8); 
+    border-radius: 0.5rem;
     display: none;
 }
 
@@ -284,7 +283,7 @@ li{
     display: flex !important;
     justify-content: center;
     align-items: center;
-    animation : showOverlay 2s linear forwards;
+    animation : showOverlay 3s linear forwards;
 }
 
 @keyframes showOverlay{
@@ -294,15 +293,15 @@ li{
 
 #textAreaOverlay p{
     color : #f7f7f7;
-    font-size : 2rem;
+    font-size : 1.5rem;
 }
 
 #codeContent{
-    border: solid #FB7813 0.5rem;
+    border: solid #FB7813 0.3rem;
     width: 100%;
     height: 100%;
-    font-size: 1.5rem;
-    border-radius: 12px;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
     resize: none;
     outline: none;
 }
@@ -310,17 +309,17 @@ li{
 textarea::-webkit-scrollbar {
     width: 1.2rem;
     background-color: #ececec; 
-    border-radius: 12px;
+    border-radius: 0.5rem;
 }
   
   textarea::-webkit-scrollbar-thumb {
-    border-radius: 12px;
+    border-radius: 0.5rem;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background-color: #FB7813; 
 }
 
 #copyButtonContainer{
-    width: 90%;
+    width: 95%;
     padding: 0.5rem 0;
     display: flex;
     justify-content: flex-end;
@@ -334,7 +333,7 @@ textarea::-webkit-scrollbar {
     font-size: 1.3rem;
     background-color: white;
     color: #323643;
-    border-radius: 12px;
+    border-radius: 0.5rem;
     border: none;
     outline: none; 
     cursor: pointer;
@@ -362,6 +361,36 @@ textarea::-webkit-scrollbar {
     border: black solid 1px;
 }
 
+/* *********************************************************** HOW IT WORKS ? ******************************************** */
+
+#howItWorksContainer{
+    grid-area: howItWorksContainer;
+    background-color: #606470;
+    min-height: 10vh;
+    width: 60%;
+    color: white;
+    margin: auto;
+
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+   
+    justify-content: space-between;
+    
+    border-bottom: solid #606470 1rem;
+    margin-bottom: 2rem;
+}
+
+#howItWorksTitle{
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+#howItWorksContainer p{
+    width: 95%;
+    font-size: 1.2rem;
+}
+
 /* *********************************************************** show animation hamburger menu ******************************************** */
 
 #showAnimationHamburgerContainer{
@@ -382,7 +411,7 @@ textarea::-webkit-scrollbar {
     display : flex;
     align-items: center;
     flex-direction : column;
-    border-radius : 15px;
+    border-radius : 0.5rem;
     }
     
     #showAnimationToggle{
@@ -396,7 +425,7 @@ textarea::-webkit-scrollbar {
     margin-top : 14%;
     background-color: #323643;
     position : relative;
-    border-radius : 12px;
+    border-radius : 0.5rem;
     }
 
 
@@ -497,7 +526,7 @@ textarea::-webkit-scrollbar {
     align-items: center;
     flex-direction : column;
     cursor : pointer;
-    border-radius : 15px;
+    border-radius : 0.5rem;
     }
     
     #mainleftArrowToggle{
@@ -511,7 +540,7 @@ textarea::-webkit-scrollbar {
     margin-top : 14%;
     background-color : #323643;
     position : relative;
-    border-radius : 12px;
+    border-radius : 0.5rem;
     }
     
     @keyframes mainleftArrowAnimate1{
@@ -585,3 +614,29 @@ textarea::-webkit-scrollbar {
     .mainleftArrowLine:nth-child(3){
     animation: mainleftArrowInitial3 .5s forwards;
     }
+
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+    html {
+        font-size: 8px;
+    }
+
+    #iconsContainer{
+        width: 100%;
+    }
+
+    #iconsContainer > div{
+        /* background-color: #FB7813 !important; */
+        width: 60% !important;
+        height: 25rem !important;
+    }
+
+    #codeContainer{
+        width: 90%;
+    }
+
+    #howItWorksContainer{
+        width: 90%;
+    }
+}
